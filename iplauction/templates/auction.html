@@ -1,0 +1,503 @@
+<!-- auction/templates/auction.html -->
+
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auction Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/20c5629a29.js" crossorigin="anonymous"></script>
+    <style>
+        /**/
+        form {
+            margin-top: 20px;
+            padding-bottom: 20px;
+            text-align: center;
+            background-color: transparent;
+            border: inset 10px 10px 10px -1px rgba(255, 255, 255, 0.70),
+        inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+        box-shadow: inset 10px 10px 10px -1px rgba(255, 255, 255, 0.70),
+        inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+        }
+        
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            background-color: transparent;
+        }
+        
+        form input[type="text"],
+        form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            background-color: #1F242A;
+            color: #ccc;
+        }
+        
+        form button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        form button:hover {
+            background-color: #45a049;
+        }
+        .form_cont{
+            background-color: transparent;
+
+        }
+        .form_box{
+                border-radius: 10px;
+                padding: 15px;
+                
+        }
+        /**/
+        .section_box{
+            display: flex;
+            text-align: center;
+            padding:10px;
+            width: 100%;
+            
+            box-shadow: inset 10px 10px 10px -1px rgba(255, 255, 255, 0.70),
+        inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+            border-radius: 10px;
+        }
+        .sectionn {
+        
+        
+        padding: 10px;
+        align-items: center;
+        display: block;
+        text-align: center;
+        justify-content: center;
+        margin-right: 10px;
+        width: 100%;
+        border-radius: 10px;
+        }
+        .sectionn h1{
+            font-size: 20px;
+        }
+        .sectionnn {
+         
+        
+        padding-top: 5px;
+        text-align: center;
+        align-items: center;
+        width: 100%;
+        border-radius: 10px;
+        }
+        .sectionnn h1{
+            font-size: 20px;
+        }
+        .sectionnn .articlee{
+            color: #03F8D9;
+            margin-bottom: 0px !important;
+            
+        }
+        .team-box {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10px; /* Adjust as needed */
+        box-shadow: inset 10px 10px 10px -1px rgba(255, 255, 255, 0.70),
+            inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+
+    .team-button {
+        background-color:  #1F242A; /* #29ECFF Green color, change as needed */
+        color: #abf9f7;
+        font-weight: bold;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 5px; /* Adjust the margin to add space between buttons */
+        cursor: pointer;
+        border-radius: 5px;
+        background-size: cover;
+    background-position: center;
+    }
+    button.team-button:hover {
+    background-color: #29ECFF;
+    /* Change to the desired color on hover */
+    background-image: none !important;
+    color: #1F242A !important;
+
+   }
+   /**/
+   article {
+        float: bottom;
+        width: 100%;
+        
+        background: inset 10px 10px 10px -1px rgba(255, 255, 255, 0.70),
+        inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+        box-shadow: inset 10px 10px 10px -1px rgba(255, 255, 255, 0.70),
+            inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+
+        margin: 0px ;
+        margin-bottom: 10px;
+        padding: 1%;
+        text-align: center;
+        color: #03F8D9;
+        font-weight: bold;
+        overflow: hidden;
+        border-radius: 15px;
+    }
+
+    .articlee {
+        float: bottom;
+         width:100%;
+         background: inset 10px 10px 10px -1px rgba(255, 255, 255, 0.70),
+        inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+        box-shadow: inset 10px 10px 10px -1px rgba(255, 255, 255, 0.70),
+            inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+        margin: 2px ;
+        margin-bottom: 0px !important;
+        padding: 2%;
+        
+        text-align: center;
+        color: #03F8D9;
+        overflow: hidden;
+        border-radius: 15px;
+    }
+    
+
+    @media all and (max-width: 900px) {
+    article {
+        width: 48%
+    }}
+
+    @media all and (max-width: 900px) {
+    .articlee {
+        width: 48%
+    }}
+   /**/
+   /*card*/
+    .cardd{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        border: 10px solid transparent;
+        margin: 0px;
+        padding: 0px;
+        border-radius: 10px;
+        box-shadow: inset 10px 10px 10px -1px rgba(10, 99, 169, 0.16) rgba(255, 255, 255, 0.70),
+        inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+        background-color: transparent;
+    }
+    .cardd:hover{
+        box-shadow: inset 10px 10px 10px -1px rgba(255, 255, 255, 0.70),
+        inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+        transform: scale(1.1);
+    }
+    .profile_bid{
+       /* border:10px  inset  rgba(255, 255, 255, 0.70); */
+        box-shadow: inset 10px 10px 10px -1px rgba(255, 255, 255, 0.70),
+        inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+        border-radius: 10px;
+        width: 100%;
+    }
+    .profile_bid:hover{
+        border: inset 10px 10px 10px -1px rgba(255, 255, 255, 0.70),
+        inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+    }
+    .profile_bid p{
+        color: wheat;
+    }
+    .profile_bid h2{
+        color: wheat;
+        font-size: 40px;
+        text-transform: capitalize;
+    }
+    .box{
+        padding: 10px !important;
+        margin: 10px;
+        justify-content: center ;
+        align-items: center ;
+        text-align: center ;
+        border: inset 10px 10px 10px -1px rgba(255, 255, 255, 0.70),
+        inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+        box-shadow: inset 10px 10px 10px -1px rgba(255, 255, 255, 0.70),
+        inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+        border-radius: 15px;
+        
+    }
+    
+   /**/
+   /**/
+   .odometer{
+        font-size:50px;
+        /* position:relative;
+        left: 30%;
+        margin-top:100px;*/
+    }
+    .biding-name p{
+        color: red;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    /*TOP*/
+    .biding-name{
+        font-size: 30px;
+        color: red;
+        font-weight: bold;
+        text-align: center;
+    }
+   /**/
+   body{
+        background-color: #121212;
+    /*    background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/73f385ae-e909-46b9-9faf-57dc2b09b346/dddraqt-f69a79cb-7e12-4a0c-b581-2dba06365070.png/v1/fit/w_828,h_466,q_70,strp/black_material_ui_background_by_ministerkraft_dddraqt-414w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6IlwvZlwvNzNmMzg1YWUtZTkwOS00NmI5LTlmYWYtNTdkYzJiMDliMzQ2XC9kZGRyYXF0LWY2OWE3OWNiLTdlMTItNGEwYy1iNTgxLTJkYmEwNjM2NTA3MC5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.UtzmPfYs0s4-l9mf1__EQeo_Pg2fsrHUJZZoqPzIU3M'); */
+      /*  background-image: url('https://assets.iplt20.com/bcci/articles/1662581418_np-iplImg.png'); */
+        background-size: cover;
+        height: 100vh;
+        width: 100%;
+   }
+   .else_cont{
+        background-image: url('');
+        background-color: white;
+        background-size: cover;
+        height: 70vh;
+        width: 100%;
+        display: flex;
+    justify-content: center;
+        align-items: center;
+        text-align: center;
+        
+   }
+   .else_cont p{
+    display: flex;
+    justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-weight: bold;
+   }
+   button{
+  background-color: blue;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+.else_cont button a {
+  text-decoration: none;
+  font-size: 12px !important;
+  font-weight: bold;
+  color: white;
+}
+    </style>
+</head>
+
+
+
+<body>
+    <link rel="stylesheet" href="https://github.hubspot.com/odometer/themes/odometer-theme-car.css" />
+    <script src="https://github.hubspot.com/odometer/odometer.js"></script>
+    <p class="biding-name">Auction Page</p>
+    
+    <hr>
+    
+    {% if players %}
+            <div class="container d-flex justify-content-center">
+                <div class="row profile_bid">
+                    <div class="col-6 d-flex justify-content-center cardd">
+                        <div class="box">
+                            <p>Player</p>
+                            <h2 class="biding-ply"> {{ players.0.name }}</h2>
+                            <p>Player is from india dont tyr to sledge him</p>
+                        </div>
+                        <div class="box">
+                            {% if players.0.picture %}
+                                <img src="{{ players.0.picture.url }}" alt="{{ players.0.name }} Logo" style="max-width: 110px; max-height: 100px;padding-bottom: 5px;">
+                            {% else %}
+                                No Logo
+                            {% endif %}
+                                <p style="padding-top: 5px;">Base Price: <span class="biding-p" style="color: red;font-weight: bold;"> {{ players.0.base_price }}</span></p>
+                        </div>
+                    </div>
+                    <div class="col-6 d-flex cardd justify-content-center ">
+                        <div class="bidteam-box" id="bidteamBox">
+                            <div class="biding-name">
+                                <p >LIVE BIDDING: <span id="liveBiddingAmount">
+                                <div id="odometer" class="odometer">{{ players.0.base_price }} </div>
+                                </span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           </div>
+        <hr>
+            <div class="container d-flex justify-content-center">
+                <div class="row">
+                    <div class="d-flex">
+                        <div class="team-box" id="teamBox">
+                        {% for team in teams %}
+                            <button class="team-button" style="background-image: url('{{ team.picture.url }}');max-width: 120px; max-height: 100px;overflow: hidden;background-size: cover;" data-team="{{ team.name }}" onclick="increaseBidAmount('{{ players.0.name }}', '{{ team.name }}')">
+                            {{ team.name }} - <span id="amount_{{ team.name }}"> {{team.total_amount_spent}}</span>
+                            </button>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+        <hr>
+            <div class="container  d-flex justify-content-center" >
+            <div class="row section_box">
+                <div class="col-6 d-flex justify-content-center ">
+                    <div class="sectionn">
+                    <h1>LAST PLAYER BID:</h1>
+                    {% for bid in last_bids %}
+                       <!-- <P>{{ forloop.counter }}</P> -->
+                        <article>{{ bid.bidder }} bought {{ bid.player.name }} for {{ bid.amount }}</article>
+                    {% endfor %}
+                </div>
+                    
+                </div>
+                <div class="col-6 d-flex">
+                    
+                    <div class="sectionnn ">
+                    <h1 >LAST BID BY TEAM DETAILS:</h1>
+                  <article class="articlee" id="lastBidDetails"></article>
+                 <!--  <div>
+                        <article class="articlee" id="lastBidDetails"></article>
+                    </div> --> 
+                   
+                </div>
+                </div>
+            </div>
+        </div>
+                
+        <hr>
+            <div style="border-radius: 10px;padding-bottom: 10px;" class="container  justify-content-center form_cont">
+                <div style="border-radius: 10px;background-color: transparent;" class="row card form_box">
+                    <form method="post" action="{% url 'bid_player' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="player_id" value="{{ players.0.id }}">
+                        <label for="bidder" style="color: azure;">Bidder:</label>
+                        <select name="bidder" id="bidder">
+                            {% for team in teams %}
+                                <option value="{{ team.name }}">{{ team.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="amount" style="color: azure;">Bid Amount:</label>
+                        <input type="text" name="amount" value="{{ players.0.base_price }}" required>
+                        <button type="submit">Submit Bid</button>
+                    </form>
+                </div>
+            </div>
+                
+        <hr>
+    {% else %}
+        
+        <div class="container else_cont">
+            <div class="row">
+                <p>No players available for auction.</p>
+            </div>
+        </div>
+    {% endif %}
+    <br>
+   
+    <footer style="align-items: center;text-align: center;">
+      <button> <a style="text-decoration: none;" href="{% url 'homi' %}" class="biding-name">click to Home</a></button> 
+    </footer>
+
+    <script>
+        function nextPlayer() {
+            // Implement logic to fetch and display the next player for auction
+            // You can use JavaScript or AJAX to load the next player dynamically
+        }
+
+        
+    
+
+        function increaseBidAmount(playerName, teamName) {
+    var amountInput = document.querySelector('input[name="amount"]');
+    var liveBiddingAmount = document.getElementById('liveBiddingAmount');
+    var bidderSelect = document.getElementById('bidder');
+
+    var currentAmount = parseFloat(amountInput.value);
+    var teamAmountSpan = document.getElementById('amount_' + teamName);
+    var teamAmount = parseFloat(teamAmountSpan.innerText);
+
+    // Check if the base amount has already been deducted
+    var baseAmountDeducted = teamAmountSpan.dataset.baseAmountDeducted === 'true';
+
+    var newBidAmount;
+
+    var biddingIncrement;
+    if (currentAmount >= 1 && currentAmount < 3) {
+        biddingIncrement = 0.25;
+    } else if (currentAmount >= 3 && currentAmount < 6) {
+        biddingIncrement = 0.5;
+    } else if (currentAmount >= 6 && currentAmount < 10) {
+        biddingIncrement = 0.75;
+    } else {
+        biddingIncrement = 1.00;
+    }
+
+
+    if (!baseAmountDeducted) {
+        // Deduct the base amount only once
+        //newBidAmount = currentAmount+0.25;
+        newBidAmount=currentAmount+biddingIncrement;
+        teamAmount -= currentAmount;
+        teamAmountSpan.dataset.baseAmountDeducted = 'true';
+    } else {
+        // Deduct base amount + 0.25 for subsequent bids
+        //newBidAmount = currentAmount + 0.25;
+        newBidAmount=currentAmount+biddingIncrement;
+        //teamAmount -= currentAmount + 0.25 -0.25;
+        //teamAmount -= 0.25 ;
+        teamAmount -= biddingIncrement;
+    }
+
+    // Update the live bidding amount
+    // liveBiddingAmount.innerText = newBidAmount;
+
+    setTimeout(function () {
+        odometer.innerHTML = newBidAmount;
+    }, 1000);
+
+    // Set the new bid amount in the input field
+    amountInput.value = newBidAmount;
+
+    // Set the last clicked or bidded team as the selected bidder
+    bidderSelect.value = teamName;
+
+    // Display the last bid details
+    var lastBidDetails = document.getElementById('lastBidDetails');
+    lastBidDetails.innerHTML += `<p>Team ${teamName} has bidded ${playerName} for ${newBidAmount}</p>`;
+
+    teamAmountSpan.innerText = teamAmount.toFixed(2);
+
+    alert(`Bid amount increased for ${teamName}`);
+}
+
+        
+    
+    
+    </script>
+</body>
+</html>
+
+
+

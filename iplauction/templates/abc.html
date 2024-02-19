@@ -1,0 +1,110 @@
+<!-- abc.html -->
+<body>
+    <h2>All Teams and Players</h2>
+
+    {% for team in teams %}
+        <div class="team-details">
+            <h3>{{ team.name }}</h3>
+            <img src="{{ team.picture.url }}" alt="{{ team.name }} Logo" style="max-width: 100px; max-height: 100px;">
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Player Name</th>
+                        <th>Player Type</th>
+                        <th>Base Price</th>
+                        <th>Bought at</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in team.bid_set.all %}
+                        <tr>
+                            <td>{{ player.name }}</td>
+                            <td>{{ player.playertype }}</td>
+                            <td>{{ player.base_price }}</td>
+                            
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <hr>
+
+            <h4>Player Type Counts</h4>
+
+            
+        </div>
+        <hr>
+    {% endfor %}
+    <!-- abc.html -->
+
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Team Name</th>
+                <th>Batsmen Count</th>
+                <th>Bowler Count</th>
+                <th>Allrounder Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in team_data %}
+                <tr>
+                    <td>{{ data.team.name }}</td>
+                    <td>{{ data.batsmen_count }}</td>
+                    <td>{{ data.bowler_count }}</td>
+                    <td>{{ data.allrounder_count }}</td>
+                </tr>
+            {% endfor %}
+
+            <hr>
+            <table border="1">
+                <tr>
+                    <th>Batsmen</th>
+                    <th>Bowler</th>
+                    <th>Allrounder</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    
+                </tr>
+            </table>
+            <!-- abc.html -->
+
+<table border="1">
+    <tr>
+        <th>Sno</th>
+        <th>Team Name</th>
+        <th>Batsmen</th>
+        <th>Bowler</th>
+        <th>Allrounder</th>
+    </tr>
+
+    {% for data in team_data %}
+    <tr>
+        <td>{{ data.sno }}</td>
+        <td>{{ data.team.name }}</td>
+        <td>{{ data.batsmen_players|join:", " }}</td>
+        <td>{{ data.bowler_players|join:", " }}</td>
+        <td>{{ data.allrounder_players|join:", " }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+            
+            <hr>
+        </tbody>
+    </table>
+
+    {% for data in team_data %}
+    <p>{{ data}}</p>
+    
+    {% endfor %}
+
+    <br>
+    <a href="{% url 'all_teams' %}">Back to All Teams</a><br>
+    <a href="{% url 'home' %}">Home - Click here to go home</a>
+</body>

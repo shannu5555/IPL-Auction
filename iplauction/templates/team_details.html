@@ -1,0 +1,182 @@
+<!-- auction/templates/team_details.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Team Details</title>
+</head>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f4;
+        background-color: #0F1215;
+        background-size: cover;
+    background-position: center;
+        
+    
+    }
+
+    h1 {
+        color: #333;
+    }
+    .table{
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        
+    }
+
+    .tablee{
+        text-align: center;
+        align-items: center;
+        display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: center;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #4caf50;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    a {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #4caf50;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        margin-top: 20px;
+    }
+
+    a:hover {
+        background-color: #45a049;
+    }
+    .pcount{
+        font-size: 10px;
+        width: 100%;
+        text-align: center;
+    }
+    .ppcount{
+        font-size: 15px;
+        color: red;
+        font-weight: bold;
+    }
+    .pdetails{
+        text-align: center;
+    }
+
+    .biding-name{
+        color: #767980;
+        text-align: center;
+        align-items: center;
+    }
+    .para{
+        color: #333;
+    }
+   
+</style>
+<body >
+    <div class="pdetails">
+        
+        <div>
+            <h2 class="biding-name">{{ team.name }} Squad</h2>
+            <img src="{{ team.picture.url }}" alt="{{ team.name }} Logo" style="max-width: 100px; max-height: 100px;">
+        </div>
+    
+    <p class="para">Total Team Amount: <span class="ppcount">{{ team_amount }} </span></p>
+    </div>
+    
+    <div>
+        <h1 class="pcount">Squad : <span class="ppcount">{{ squad_count }}</span><span>  |  </span>Batsmen : <span class="ppcount">{{ batsmen_count }}</span><span>  |  </span>Bowler : <span class="ppcount">{{ bowler_count }}</span><span>  |  </span>Allrounder : <span class="ppcount">{{ allrounder_count }}</span> </h1>
+    </div>
+    <div class="tablee">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Player Name</th>
+                <th>Player Type</th>
+                <th>Base Price</th>
+                <th>Bought at</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+                <tr style="background-color: white;">
+                    <td >{{ player.player.name }}</td>
+                    <td>{{ player.player.playertype }}</td>
+                    <td>{{ player.player.base_price }}</td>
+                    <td>{{ player.amount }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    <br>
+    <hr>
+    
+    
+    <hr>
+    <div class="tablee">
+        <table>
+            <tr>
+                <th>Batsmen ({{batsmen_count }})</th>
+                <th>Bowler ({{ bowler_count }})</th>
+                <th>Allrounder ({{allrounder_count }})</th>
+            </tr>
+            <tr>
+                <td>
+                    {% for player in players %}
+                        {% if player.player.playertype == 'Batsmen' %}
+                            <p>{{ player.player.name }}</p>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for player in players %}
+                        {% if player.player.playertype == 'Bowler' %}
+                            <p>{{ player.player.name }}</p>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for player in players %}
+                        {% if player.player.playertype == 'Allrounder' %}
+                            <p>{{ player.player.name }}</p>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <hr>
+    
+
+    <hr>
+   
+    
+
+    <hr>
+    
+    <br>
+    <a href="{% url 'all_teams' %}">Back to All Teams</a><br>
+    <a href="{% url 'home' %}">Home - Click here to go home</a>
+</body>
+</html>

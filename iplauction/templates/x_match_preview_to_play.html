@@ -1,0 +1,23 @@
+<!-- templates/select_team.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Team</title>
+</head>
+<body>
+    {{selected_batting_players}}
+   
+    <p>Selected Batting Players: {{ selected_batting_players }}</p>
+    {% for player in selected_batting_players %}
+            <input type="checkbox" name="selected_players_of_batting_team" value="{{ player.id }}">{{ player.player__name }}<br>
+        {% endfor %}
+<p>Selected Bowling Players: {{ selected_bowling_players }}</p>
+
+<a href="{% url 'x_select_openers_to_play' %}">Next</a>
+
+
+</body>
+</html>

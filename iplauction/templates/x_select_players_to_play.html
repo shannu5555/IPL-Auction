@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    
+    <form method="post" action="{% url 'x_match_preview_to_play' %}">
+        {% csrf_token %}
+        <h3>Select Batting Team Players:</h3>
+        {% for player in batting_players %}
+          <input type="checkbox" name="selected_players_of_batting_team" value="{{ player.id }}"> {{ player.name }}<br>
+        {% endfor %}
+      
+        <h3>Select Bowling Team Players:</h3>
+        {% for player in bowling_players %}
+          <input type="checkbox" name="selected_players_of_bowling_team" value="{{ player.id }}"> {{ player.name }}<br>
+        {% endfor %}
+      
+        <button type="submit">Next</button>
+      </form>
+      
+  </body>
+</html>

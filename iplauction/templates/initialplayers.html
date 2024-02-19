@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initial Players Selection</title>
+    <!-- Add any additional CSS styling or links here -->
+</head>
+
+<body>
+    <h1>Select Openers and Bowler</h1>
+    <hr>
+    {{batting_team_players}}
+    
+    {{matchid}}
+    <hr>
+    {% for player in batting_team_players %}
+        <P>{{player.name}}</P>
+    {% endfor %}
+    <hr>
+    <hr>
+    {% for player in batting_team_players %}
+        <P>{{player.player.name}}</P>
+    {% endfor %}
+    <hr>
+    <hr>
+    {% for player in batting_team_players %}
+        <P>{{player.player}}</P>
+    {% endfor %}
+    <hr>
+    <hr>
+    {% for player in batting_team_players %}
+        <P>{{player}}</P>
+    {% endfor %}
+    <hr>
+
+    
+        <form method="post" action="{% url 'initial_players' %}">
+
+        {% csrf_token %}
+        
+        <h2>Select Openers</h2>
+        {% for player in batting_team_players %}
+                
+                <P>{{player.name}}</P>
+            {% endfor %}
+        <P>h</P>
+
+        <!-- Select a player to open strike from 11 players of batting team -->
+        <!-- Select a player to open strike from 11 players of batting team -->
+        <label for="strike_batsman">Strike Batsman:</label>
+        <select name="strike_batsman" id="strike_batsman">
+            {% for player in batting_team_players %}
+                <option value="{{ player }}">{{ player }}</option>
+            {% endfor %}
+        </select>
+        
+        <label for="non_strike_batsman">Non-Strike Batsman:</label>
+        <select name="non_strike_batsman" id="non_strike_batsman">
+            {% for player in batting_team_players %}
+                <option value="{{ player}}">{{ player }}</option>
+                <P>{{player.player.name}}</P>
+            {% endfor %}
+        </select>
+        
+        <label for="opening_bowler">Opening Bowler:</label>
+        <select name="opening_bowler" id="opening_bowler">
+            {% for player in bowling_team_players %}
+                <option value="{{ player }}">{{ player }}</option>
+            {% endfor %}
+        </select>
+        
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Add any additional HTML or content here -->
+
+    <!-- Add any additional JavaScript scripts or links here -->
+</body>
+</html>
+

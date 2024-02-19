@@ -1,0 +1,33 @@
+<!-- templates/select_team.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Team</title>
+</head>
+<body>
+    <h1>Select Team</h1>
+    <!-- selectteams.html -->
+<form method="post" action="{% url 'match_preview' match.id %}">
+    {% csrf_token %}
+    <label for="batting_team">Select Batting Team:</label>
+    <select name="batting_team" id="batting_team">
+        {% for team in teams %}
+            <option value="{{ team.id }}">{{ team.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="bowling_team">Select Bowling Team:</label>
+    <select name="bowling_team" id="bowling_team">
+        {% for team in teams %}
+            <option value="{{ team.id }}">{{ team.name }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Start</button>
+</form>
+
+</body>
+</html>

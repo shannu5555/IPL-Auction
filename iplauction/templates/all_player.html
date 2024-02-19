@@ -1,0 +1,195 @@
+<!-- auction/templates/all_player.html -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Players Page</title>
+    <style>
+    @charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: green;
+}
+
+/* Table header */
+th {
+  text-align: left;
+  padding: 2px;
+  
+  border: 5px solid transparent;
+  background-color: lightblue;
+  color: black;
+  text-align: center;
+}
+
+
+td {
+  text-align: left;
+  padding: 5px;
+  color: white;
+  font-weight: bold;
+  margin-left: 10px !important;
+  border: 10px solid transparent;
+  background-color: transparent;
+  height: 15px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: inset 10px 10px 10px -1px rgba(10, 99, 169, 0.16),
+        inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+}
+td:hover{
+ /* background-color: black; */
+  
+  box-shadow: inset 10px 10px 10px -1px rgba(10, 99, 169, 0.16),
+        inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+}
+tr{
+            height: 10px !important;
+            transition: transform 0.3s ease;
+            box-shadow: inset 10px 10px 10px -1px rgba(10, 99, 169, 0.16),
+        inset -10px -10px 10px -1px ;/* Define the height of the space */
+        box-shadow: inset 10px 10px 10px -1px rgba(10, 99, 169, 0.16),
+        inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+        cursor: pointer;
+        margin-left: 10px !important;
+
+        }
+tr:hover{
+  box-shadow: inset 10px 10px 10px -1px rgba(10, 99, 169, 0.16),
+        inset  10px 10px 10px -1px rgba(10, 99, 169, 0.16);
+        transform: scale(1.1);
+        background-color: blue !important;
+        cursor: pointer;
+}
+/* Special formatting for the first column */
+td:first-child {
+  font-weight: bold;
+}
+
+/* Special formatting for the last column */
+td:last-child {
+  text-align: right;
+}
+
+.pct {
+  text-align:center;
+}
+
+h1 {
+    font-size: 50px;
+    margin: 0;
+    border-radius: 10px;/* Add this line to remove the default margin */
+}
+
+.allteams {
+    align-items: center;
+    text-align: center;
+    background-color: blue;
+    margin-bottom: 0; /* Add this line to remove margin from the bottom */
+}
+
+table {
+    margin-top: 0; 
+    height: 100px ;
+    background-color: transparent;
+}
+
+.cont_body{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+body{
+  background-image: url('https://t3.ftcdn.net/jpg/01/97/33/46/360_F_197334647_aClfAIrrc0RPrsC8V52RN4MkzNmQCysc.jpg');
+  height: 100vh;
+  width: 100%;
+ 
+  background-size: cover;
+}
+button{
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+}
+
+button a{
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+}
+.botm_line {
+  text-align: center;
+  align-items: center;
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+  font-size: 25px;
+  text-decoration: none;
+}
+.botm_line a{
+  text-decoration: none;
+  color: white;
+}
+.botm_line a:hover{
+  background-color: rgb(49, 192, 221);
+}
+</style>
+</head>
+
+
+
+<body>
+    <div class="cont_body">
+        <div>
+            <h1 style="font-size:70px;text-align: center;color: white;">IPL</h1>
+    
+    <div class="allteams" style="border-radius: 10px;" >
+        <h1 style="color: #f1f1f1;">ALL PLAYERS</h1>
+    </div>
+    <table border="1" class="container">
+        <thead>
+            <tr>
+				<th>S.NO</th>
+				<th>PROFILE PIC</th>
+                <th>PLAYER NAME</th>
+                <th>TYPE</th>
+                <th>BASE PRICE</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for player in players %}
+                <tr>
+					<td>{{ forloop.counter }}</td>
+					<td>
+						{% if player.picture %}
+                        <img src="{{ player.picture.url }}" alt="{{ player.name }} Logo" style="max-width: 70px; max-height: 70px;">
+                            
+                        {% else %}
+                            No Logo
+                        {% endif %}
+					</td>
+                    <td style="font-weight: bold;">{{ player.name }}</td>
+                    <td>{{ player.playertype }}</td>
+                    <td>{{ player.base_price }}</td>
+                    <td><button><a href="{% url 'delete_player' player.id %}" onclick="return confirm('Are you sure you want to delete {{ player.name }}?')">Delete</a></button></td> 
+                    <!-- Add delete functionality as needed -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        </div>
+    </div>
+    
+    <br>
+    <div class="botm_line">
+         <button style="background-color: blue;color: white;"><a class="btn btn-primary" style="color: white;" href="{% url 'homi' %}">Home - Click here to go home</a></button> 
+    </div>
+  
+</body>
+</html>

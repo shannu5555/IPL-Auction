@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <form method="post" action="{% url 'match_preview' match_id=match_id %}">
+        {% csrf_token %}
+        
+        <!-- Batting Team Table -->
+        <h2>Batting Team Details</h2>
+        {{batting_team_players.player.name}}
+        <table>
+            <!-- Table headers -->
+            <thead>
+                <tr>
+                    <th>sno</th>
+                    <th>Player</th>
+                    <th>Playertype</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+            <!-- Table body -->
+            <tbody>
+                {% for player in batting_team_players %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ player.player.name }}</td>
+                        <td>{{ player.player.playertype }}</td>
+                        <td><input type="checkbox" name="selected_players" value="{{ player.id }}"></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    
+        <!-- Bowling Team Table -->
+        <h2>Bowling Team Details</h2>
+        <table>
+            <!-- Table headers -->
+            <thead>
+                <tr>
+                    <th>sno</th>
+                    <th>Player</th>
+                    <th>Playertype</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+            <!-- Table body -->
+            <tbody>
+                {% for player in bowling_team_players %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ player.player.name }}</td>
+                        <td>{{ player.player.playertype }}</td>
+                        <td><input type="checkbox" name="selected_players" value="{{ player.id }}"></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    
+        <button type="submit">Start</button>
+    </form>
+  </body>
+</html>

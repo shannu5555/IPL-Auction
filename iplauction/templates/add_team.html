@@ -1,0 +1,187 @@
+
+
+<!-- auction/templates/add_team.html -->
+<!-- auction/templates/add_team.html -->
+<!DOCTYPE html>
+<html>
+
+<head> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/20c5629a29.js" crossorigin="anonymous"></script>
+   
+    <style>
+      
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-color: #201b1b;
+ /*   background-image: url('bg_img1.jpg');   */
+    background-size: cover;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0 20px;
+}
+
+form {
+    background-color: #f0f0f0 ;
+    padding: 30px;
+    text-align: center;
+    margin: 0px;
+    border-radius: 20px;
+    box-shadow: 20px 20px 50px #bebebe hidden,
+        -20px -20px 50px #fff;
+        transition: transform 0.3s ease;
+        border: 3px solid transparent;
+}
+
+form:hover {
+    background-color: #f0f0f0;
+    padding: 30px;
+ /*   box-shadow: 20px 20px 50px #bebebe,
+        -20px -20px 50px #fff; */
+        
+}
+
+ form:hover {
+    background-color: #201b1b;
+    padding: 30px;
+  /*  box-shadow: 20px 20px 50px #bebebe,
+        -20px -20px 50px #fff;
+        color: white;  */
+        transform: scale(1.1);
+        border-color: white; /* Remove !important */
+    border-width: 3px;
+    color: #bebebe;
+}   
+form h1{
+   /* color: blue; */
+    font-weight: bold;
+    font-size: 24px;
+}
+.input-container {
+    margin: 20px;
+}
+
+input[type="text"] ,input[type="password"],input[type="number"],input[type="email"]{
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: inset 5px 5px 10px #bebebe,
+        inset -5px -5px 10px #fff;
+}
+
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px #bebebe,
+        -5px -5px 10px #ffffff;
+        font-weight: bold;
+}
+
+button:hover {
+    box-shadow: none;
+    background-color: rgb(43, 32, 32);
+    color: white;
+    font-weight: bold;
+}
+
+p{
+    margin: 20px;
+}
+.card{
+    border-radius: 20px;
+    padding: 0px !important;
+    margin: 0 !important;
+    background-color: transparent;
+    border-color: black;
+    border-width: 3px;
+    background-color: #fff;
+}
+.card:hover{
+    background-color: #201b1b;
+    color: white;
+    border-color: white;
+}
+
+.logo_img2 {
+    height: 150px;
+    width: 300px;
+    background-size: cover;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.cont{
+    transition: transform 0.3s ease;
+    border: 3px solid transparent;
+    text-align: center;
+    margin: 0px;
+    border-radius: 20px;
+
+}
+.cont:hover{
+    transform: scale(1.1);
+    border-color: white; 
+    border-width: 3px;
+    background-color: #201b1b;
+    overflow: hidden;
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="d-flex flex-row card">
+                <div style="align-items: center;" class="cont d-flex col-6 justify-content-center">
+                    <a href="https://monosage.com/home">
+                        <img class="logo_img2" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhuey_8VKd-PkrlcSkLgGDMVxFfczgI5nEeEDadAgBLy9tE9DXMH7axynfMTg1WoQItWyJyK5mIa50CW65iNTIVRetq3dlAbvGBNxgyTzJ73jLVbo3e240AC1eriS71J9hCU7L_f5zgapKLqMYIFT-MroRk-HzKyGlnkTtTFA5LmPalHnfPt_LM0mop/s1920/Original%20Indian%20Premier%20League%20IPL%20Logo%20PNG%20Transparent%20Images%20File%20Download%20Free%20Download.png">
+                    </a>
+                </div>
+                <hr style="background-color: aqua;color: aqua;">
+                <form class="login-form"  method="post" enctype="multipart/form-data" >
+        <h1>Add Team</h1>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn" type="submit">Submit Team</button>
+        <br>
+        <a href="{% url 'all_teams' %}">Click here to display all teams</a><br>
+    <a href="{% url 'homi' %}">Home - Click here to go home</a>
+    </form> 
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

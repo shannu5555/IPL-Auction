@@ -1,0 +1,51 @@
+<!-- matchpreview.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Preview</title>
+    <!-- Add any additional styles or scripts here -->
+</head>
+<body>
+
+<h2>Batting Team Details</h2>
+<h2>Batting Team Details</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Player Name</th>
+            <!-- Add other player details as needed -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for player in match.batting_team.bid_set.all %}
+            <tr>
+                <td>{{ player.player.name }}</td>
+                <!-- Add other player details as needed -->
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Bowling Team Details</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Player Name</th>
+            <!-- Add other player details as needed -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for player in match.bowling_team.bid_set.all %}
+            <tr>
+                <td>{{ player.player.name }}</td>
+                <!-- Add other player details as needed -->
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
+

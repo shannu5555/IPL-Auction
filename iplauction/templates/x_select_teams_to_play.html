@@ -1,0 +1,33 @@
+
+
+<!-- templates/select_bowling_team.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Created</title>
+</head>
+<body>
+    <form method="post" action="{% url 'x_select_players_to_play' %}">
+        {% csrf_token %}
+        <label for="select_batting_team">Select Batting Team:</label>
+        <select name="select_batting_team" id="select_batting_team">
+          {% for team in teams %}
+            <option value="{{ team.id }}">{{ team.name }}</option>
+          {% endfor %}
+        </select>
+      
+        <label for="select_bowling_team">Select Bowling Team:</label>
+        <select name="select_bowling_team" id="select_bowling_team">
+          {% for team in teams %}
+            <option value="{{ team.id }}">{{ team.name }}</option>
+          {% endfor %}
+        </select>
+      
+        <button type="submit">Next</button>
+      </form>
+      
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <!-- selectplaying.html -->
+<form method="post" action="{% url 'start_match' %}">
+    {% csrf_token %}
+    <label for="strike_batsman">Select Batsman on Strike:</label>
+    <select name="strike_batsman" id="strike_batsman">
+        <!-- Display available batsmen for the batting team -->
+        {% for player in match.batting_team.player_set.all %}
+            <option value="{{ player.id }}">{{ player.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="non_strike_batsman">Select Non-Strike Batsman:</label>
+    <select name="non_strike_batsman" id="non_strike_batsman">
+        <!-- Display available batsmen for the batting team -->
+        {% for player in match.batting_team.player_set.all %}
+            <option value="{{ player.id }}">{{ player.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="bowler">Select Bowler:</label>
+    <select name="bowler" id="bowler">
+        <!-- Display available bowlers for the bowling team -->
+        {% for player in match.bowling_team.player_set.all %}
+            <option value="{{ player.id }}">{{ player.name }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Start Match</button>
+</form>
+
+  </body>
+</html>

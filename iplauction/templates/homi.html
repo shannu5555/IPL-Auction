@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Nav Bar</title>
+    <link rel="stylesheet" href="">
+    <style>
+        body{
+            background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/73f385ae-e909-46b9-9faf-57dc2b09b346/dddraqt-f69a79cb-7e12-4a0c-b581-2dba06365070.png/v1/fill/w_1280,h_720,q_80,strp/black_material_ui_background_by_ministerkraft_dddraqt-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6IlwvZlwvNzNmMzg1YWUtZTkwOS00NmI5LTlmYWYtNTdkYzJiMDliMzQ2XC9kZGRyYXF0LWY2OWE3OWNiLTdlMTItNGEwYy1iNTgxLTJkYmEwNjM2NTA3MC5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.UtzmPfYs0s4-l9mf1__EQeo_Pg2fsrHUJZZoqPzIU3M');
+            background-size: cover;
+            height: 100vh;
+            width: 100%;
+        }
+.navbar {
+    background-color: #333; 
+    padding: 10px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    border-radius: 15px;
+    margin: 10px;
+    margin-top: 20px;
+}
+
+.logo a {
+    color: #fff; /* Color of the logo text */
+    text-decoration: none; /* Remove underline from the logo text */
+    font-size: 20px;
+    padding-left: 10px;
+    text-align: center;
+    font-weight: bold; /* Size of the logo text */
+}
+
+.nav-links {
+    list-style-type: none; /* Remove bullets from the list */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Use flexbox for layout */
+}
+
+.nav-links li {
+    margin-right: 20px; /* Add spacing between list items */
+}
+
+.nav-links li:last-child {
+    margin-right: 0; /* Remove margin from the last list item */
+}
+
+.nav-links li a {
+    color: #fff; /* Color of the navigation links */
+    text-decoration: none; /* Remove underline from the navigation links */
+}
+.nav-links li a:hover {
+    color: red; /* Color of the navigation links */
+    text-decoration: none; /* Remove underline from the navigation links */
+}
+.nav-links li a:hover:focus {
+    color: green; /* Color of the navigation links */
+    text-decoration: none; /* Remove underline from the navigation links */
+}
+
+.dropdown {
+    position: relative; /* Set position to relative for dropdown */
+}
+
+.dropdown-content {
+    display: none; /* Hide the dropdown content by default */
+    position: absolute; /* Position the dropdown content absolutely */
+    background-color: #333; /* Background color of the dropdown content */
+    min-width: 120px; /* Minimum width of the dropdown content */
+    z-index: 1; /* Set the z-index to ensure it appears above other elements */
+}
+
+.dropdown-content a {
+    color: #fff; /* Color of the dropdown links */
+    padding: 10px; /* Padding for the dropdown links */
+    display: block; /* Display the dropdown links as block elements */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block; /* Display the dropdown content when hovered */
+}
+    </style>
+</head>
+<body>
+<nav class="navbar fixed-top">
+    <div class="logo">
+        <a href="#">{{user}}</a>
+    </div>
+    <ul class="nav-links">
+        <li><a class="nav-link" href="{% url 'homi' %}"><i class="far fa-address-book"></i>Home</a></li>
+        <li><a class="nav-link" href="{% url 'add_player' %}"><i class="fas fa-tachometer-alt"></i>Add Player</a></li>
+        <li><a class="nav-link" href="{% url 'create_team' %}"><i class="far fa-calendar-alt"></i>Add Team</a></li>
+        
+        
+        <li><a class="nav-link" href="{% url 'all_players' %}"><i class="far fa-clone"></i>All Players</a></li>
+        <li class="dropdown">
+            <a href="#">Services</a>
+            <div class="dropdown-content">
+                <a href="#">Service 1</a>
+                <a href="#">Service 2</a>
+                <a href="#">Service 3</a>
+            </div>
+        </li>
+        
+        <li><a class="nav-link" href="{% url 'all_teams' %}"><i class="far fa-chart-bar"></i>All Teams</a></li>
+        <li><a class="nav-link" href="{% url 'auction_page' %}"><i class="far fa-copy"></i>Auction</a></li>
+        <li><a class="nav-link" href="{% url 'sold_players' %}"><i class="far fa-copy"></i>Sold Players</a></li>
+        <li class="nav-item">
+                    {% if request.user.is_authenticated%}
+                    <a href="/logout/" class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</a>
+                    {%else%}
+                    <a href="/login/" class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</a>
+                    {%endif%}
+                </li>
+    </ul>
+</nav>
+<main>
+        <div class="buttons">
+            <button id="start-a-match" >start match</button>
+            <button class="fill" id="start-a-match">Start</button>
+            <button id="start-match-btn" >Add Player</button>
+            <button id="load-history-btn">Load history</button>
+            <button id="resume-match-btn">Resume match</button>
+            <button id="add-teams-players-btn">Add Teams & Players</button>
+        </div>
+    </main>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        function test() {
+    var tabsNewAnim = $('#navbarSupportedContent');
+    var selectorNewAnim = $('#navbarSupportedContent').find('li').length;
+    var activeItemNewAnim = tabsNewAnim.find('.active');
+    var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
+    var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
+    var itemPosNewAnimTop = activeItemNewAnim.position();
+    var itemPosNewAnimLeft = activeItemNewAnim.position();
+    $(".hori-selector").css({
+        "top": itemPosNewAnimTop.top + "px",
+        "left": itemPosNewAnimLeft.left + "px",
+        "height": activeWidthNewAnimHeight + "px",
+        "width": activeWidthNewAnimWidth + "px"
+    });
+    $("#navbarSupportedContent").on("click", "li", function(e) {
+        $('#navbarSupportedContent ul li').removeClass("active");
+        $(this).addClass('active');
+        var activeWidthNewAnimHeight = $(this).innerHeight();
+        var activeWidthNewAnimWidth = $(this).innerWidth();
+        var itemPosNewAnimTop = $(this).position();
+        var itemPosNewAnimLeft = $(this).position();
+        $(".hori-selector").css({
+            "top": itemPosNewAnimTop.top + "px",
+            "left": itemPosNewAnimLeft.left + "px",
+            "height": activeWidthNewAnimHeight + "px",
+            "width": activeWidthNewAnimWidth + "px"
+        });
+    });
+}
+$(document).ready(function() {
+    setTimeout(function() {
+        test();
+    });
+});
+$(window).on('resize', function() {
+    setTimeout(function() {
+        test();
+    }, 500);
+});
+$(".navbar-toggler").click(function() {
+    $(".navbar-collapse").slideToggle(300);
+    setTimeout(function() {
+        test();
+    });
+});
+
+
+
+// --------------add active class-on another-page move----------
+jQuery(document).ready(function($) {
+    // Get current path and find target link
+    var path = window.location.pathname.split("/").pop();
+
+    // Account for home page with empty path
+    if (path == '') {
+        path = 'index.html';
+    }
+
+    var target = $('#navbarSupportedContent ul li a[href="' + path + '"]');
+    // Add active class to target link
+    target.parent().addClass('active');
+});
+    </script>
+    <script>
+        document.getElementById('start-match-btn').addEventListener('click', function() {
+            // Replace 'your-link-url.html' with the actual URL you want to navigate to
+            window.location.href = "{% url 'add_player' %}";
+        });
+        document.getElementById('start-a-match').addEventListener('click', function() {
+            // Replace 'your-link-url.html' with the actual URL you want to navigate to
+            window.location.href = "{% url 'abc' %}";
+        });
+    </script>
+</body>
+</html>

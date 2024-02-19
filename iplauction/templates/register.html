@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head> 
+    <style>
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0 20px;
+}
+
+form {
+    background-color: #f0f0f0;
+    padding: 30px;
+    text-align: center;
+    margin: 15px;
+    border-radius: 20px;
+    box-shadow: 20px 20px 50px #bebebe hidden,
+        -20px -20px 50px #fff;
+}
+
+form:hover {
+    background-color: #f0f0f0;
+    padding: 30px;
+    box-shadow: 20px 20px 50px #bebebe,
+        -20px -20px 50px #fff;
+}
+
+.input-container {
+    margin: 20px;
+}
+
+input[type="text"] {
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: inset 5px 5px 10px #bebebe,
+        inset -5px -5px 10px #fff;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px #bebebe,
+        -5px -5px 10px #ffffff;
+}
+
+button:hover {
+    box-shadow: none;
+    background-color: grey;
+}
+    </style>
+    <style>
+
+      * {
+          padding: 0px;
+          margin: 0px;
+          box-sizing: border-box;
+      
+      }
+      
+      body {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          width: 100%;
+        
+          background-image: url('https://images.unsplash.com/photo-1450380412196-4e27fb7d2270?crop=entropy&fit=crop&fm=jpg&h=675&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1375');
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+      }
+      
+      .container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          padding: 10px ;
+      
+      }
+      
+      form {
+          background-color: #f0f0f0;
+          padding: 30px !important;
+          text-align: center;
+          margin: 15px;
+          border: 10px solid transparent;
+          border-radius: 20px;
+          box-shadow:inset 20px 20px 50px #2e2a2a ,
+      inset  -20px -20px 50px #bebebe;
+      }
+      
+      form:hover {
+    background-color: #f0f0f0;
+    padding: 30px;
+    box-shadow: inset 20px 20px 50px #bebebe,
+     inset   -20px -20px 50px #fff;
+     border: 10px solid #bebebe;
+}
+      
+      .input-container {
+          margin: 20px;
+      }
+      
+      input[type="text"] ,input[type="password"],input[type="number"],input[type="email"]{
+          text-align: center;
+          width: 100%;
+          padding: 10px;
+          border: none;
+          cursor: pointer;
+          background-color: #f0f0f0;
+          border-radius: 10px;
+          box-shadow: inset 5px 5px 10px #bebebe,
+              inset -5px -5px 10px #fff;
+      }
+      
+      button {
+          width: 100%;
+          padding: 10px;
+          border: none;
+          background-color: #f0f0f0;
+          border-radius: 10px;
+          cursor: pointer;
+          box-shadow: 5px 5px 10px #bebebe,
+              -5px -5px 10px #ffffff;
+      }
+      
+      button:hover {
+          box-shadow: none;
+          background-color: grey;
+      }
+          </style>
+</head>
+
+<body>
+    <div class="container">
+        
+        <form class="col-6 mx-auto" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Register</h2>
+            <hr>
+
+            {% if messages %}
+            {{ message.tags }}
+            <div class="alert alert-primary" role="alert">
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+              </div>
+
+            {% endif %}
+
+            <div class="form-group" style="padding: 10px;margin-top: 10px;">
+                <label for="exampleInputEmail1">First Name</label>
+                <input type="text" name="first_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="first_name">
+                
+              </div>
+              <div class="form-group " style="padding: 10px;margin-top: 5px;">
+                <label for="exampleInputEmail1" style="padding: 10px;margin-top: 10px;">Last Name</label>
+                <input type="text" name="last_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="last_name">
+                
+              </div>
+                <div class="form-group" style="padding: 10px;margin-top: 5px;">
+                  <label for="exampleInputEmail1" style="padding: 10px;margin-top: 5px;">username</label>
+                  <input type="text" style="padding: 10px;margin-top: 10px;" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="username">
+                  
+                <div class="form-group">
+                  <label for="exampleInputPassword1" style="padding: 10px;margin-top: 5px;">Password</label>
+                  <input type="password" name="password" style="padding: 10px;margin-top: 5px;" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                
+                
+                <button type="submit" class="btn btn-primary">Submit</button>
+             
+            
+                <p>Already have Account <a href="/login/">Login</a></p>
+          </form>
+      
+    </div>
+</body>
+
+</html>

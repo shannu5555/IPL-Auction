@@ -1,0 +1,204 @@
+<!-- auction/templates/all_team.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Teams Page</title>
+</head>
+
+<style>
+    @charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: green;
+}
+
+/* Table header */
+th {
+  text-align: left;
+  padding: 2px;
+  
+  border: 5px solid transparent;
+  background-color: transparent;
+  color: black;
+}
+
+
+td {
+  text-align: left;
+  padding: 5px;
+  color: white;
+  font-weight: bold;
+  margin-left: 10px !important;
+  border: 10px solid transparent;
+  background-color: transparent;
+  height: 15px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: inset 10px 10px 10px -1px rgba(10, 99, 169, 0.16),
+        inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+}
+td:hover{
+ /* background-color: black; */
+  
+  box-shadow: inset 10px 10px 10px -1px rgba(10, 99, 169, 0.16),
+        inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+}
+tr{
+            height: 10px !important;
+            transition: transform 0.3s ease;
+            box-shadow: inset 10px 10px 10px -1px rgba(10, 99, 169, 0.16),
+        inset -10px -10px 10px -1px ;/* Define the height of the space */
+        box-shadow: inset 10px 10px 10px -1px rgba(10, 99, 169, 0.16),
+        inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
+        cursor: pointer;
+        margin-left: 10px !important;
+
+        }
+tr:hover{
+  box-shadow: inset 10px 10px 10px -1px rgba(10, 99, 169, 0.16),
+  inset  10px 10px 10px -1px rgba(10, 99, 169, 0.16);
+        transform: scale(1.1);
+        background-color: blue !important;
+        cursor: pointer;
+}
+/* Special formatting for the first column */
+td:first-child {
+  font-weight: bold;
+}
+
+/* Special formatting for the last column */
+td:last-child {
+  text-align: right;
+}
+
+.pct {
+  text-align:center;
+}
+
+h1 {
+    font-size: 50px;
+    margin: 0;
+    border-radius: 10px;/* Add this line to remove the default margin */
+}
+
+.allteams {
+    align-items: center;
+    text-align: center;
+    background-color: blue;
+    margin-bottom: 0; /* Add this line to remove margin from the bottom */
+}
+
+table {
+    margin-top: 0; 
+    height: 100px ;
+    background-color: transparent;
+}
+
+.cont_body{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+body{
+  background-image: url('https://www.shutterstock.com/image-vector/night-cricket-stadium-illustration-vector-600nw-2160100275.jpg');
+  height: 100vh;
+  width: 100%;
+  
+  background-size: cover;
+}
+button{
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+}
+
+button a{
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+}
+.botm_line {
+  text-align: center;
+  align-items: center;
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+  font-size: 25px;
+  text-decoration: none;
+}
+.botm_line a{
+  text-decoration: none;
+  color: white;
+}
+.botm_line a:hover{
+  background-color: rgb(49, 192, 221);
+}
+</style>
+
+<body>
+  <div class="cont_body">
+    
+    <div >
+      <h1 style="font-size:70px;text-align: center;color: white;">IPL TEAM DETAILS </h1>
+      <div class="allteams" style="border-radius: 10px;" >
+        <h1 style="color: #f1f1f1;">ALL TEAMS</h1>
+      </div>
+      <table >
+        <thead>
+            <tr>
+                <th>Team LOGO</th>
+                <th>Team Name</th>
+                <th>Base Amount</th>
+                <th>Total Purse Remaining</th>
+                <th>Delete Team</th>
+                <th>Team Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for team in teams %}
+                <tr>
+                    <td >
+                        {% if team.picture %}
+                        <img src="{{ team.picture.url }}" alt="{{ team.name }} Logo" style="width: 30px; height: 30px;">
+                            
+                        {% else %}
+                            No Logo
+                        {% endif %}
+                    </td>
+                    <td style="font-weight: bold;">{{ team.name }}</td>
+                    <td>{{ team.amount }}</td>
+                    <td>{{team.total_amount_spent}}</td>
+                  <!-- <td><a href="{% url 'delete_team' team.id %}" onclick="return confirm('Are you sure you want to delete {{ team.name }}?')">Delete</a></td>-->  <!-- Add delete functionality as needed -->
+                    <td><button><a href="{% url 'delete_team' team.id %}" onclick="return confirm('Are you sure you want to delete {{ team.name }}?')" class="button">DELETE</a></button></td>
+                    <td><button><a href="{% url 'team_details' team.name %}">TEAM DETAILS</a></button></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+    
+  <!-- <hr> {% for team in teams %}
+    {% if team.picture %}
+    <img src="{{ team.picture.url }}" alt="{{ team.name }} Logo" style="max-width: 25px; max-height: 10px;">
+        
+    {% else %}
+        No Logo
+    {% endif %}
+    {% endfor %}
+    <hr> --> 
+    <p style="color: white;">{{batsmen_count }}</p>
+    <br>
+    <div class="botm_line">
+      <a  href="{% url 'homi' %}">Home</a>
+    </div>
+    
+</body>
+
+</html>
+
+

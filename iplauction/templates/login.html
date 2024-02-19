@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head> 
+    <style>
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    
+    background-image: url('https://images.unsplash.com/photo-1450380412196-4e27fb7d2270?crop=entropy&fit=crop&fm=jpg&h=675&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1375');
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 10px ;
+
+}
+
+form {
+   background-color: #f0f0f0; 
+    padding: 30px !important;
+    text-align: center;
+    margin: 15px;
+    border: 10px solid transparent;
+    border-radius: 20px;
+    box-shadow:inset 20px 20px 50px #2e2a2a ,
+      inset  -20px -20px 50px #bebebe;
+}
+
+form:hover {
+    background-color: #f0f0f0;
+    padding: 30px;
+    box-shadow: inset 20px 20px 50px #bebebe,
+     inset   -20px -20px 50px #fff;
+     border: 10px solid #bebebe;
+}
+
+.input-container {
+    margin: 20px;
+}
+
+input[type="text"] ,input[type="password"],input[type="number"],input[type="email"]{
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: inset 5px 5px 10px #bebebe,
+        inset -5px -5px 10px #fff;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px #bebebe,
+        -5px -5px 10px #ffffff;
+}
+
+button:hover {
+    box-shadow: none;
+    background-color: grey;
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        
+        <form class="col-6 mx-auto" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+
+            {% if messages %}
+            {{ message.tags }}
+            <div class="alert alert-primary" style="padding: 10px;margin-top: 10px;" role="alert">
+                {% for message in messages %}
+                    <h1 style="padding: 10px;margin: 10px;">{{ message }}</h1> 
+                {% endfor %}
+              </div>
+
+            {% endif %}
+
+            <h2>Login</h2>
+            <hr>
+                <div class="form-group" style="padding: 10px;">
+                  <label for="exampleInputEmail1" style="padding: 10px;">USERNAME</label>
+                  <input type="text" style="padding: 10px;" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+             <!--    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>  --> 
+                </div>
+                <div class="form-group" style="padding: 10px;">
+                  <label for="exampleInputPassword1">PASSWORD</label>
+                  <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                
+                
+             
+            
+            <button type="submit" style="margin-top: 10px;" class="btn btn-primary">Submit</button>
+
+            <p style="padding: 10px;">Dont have Account <a href="/register/">Register</a></p>
+          </form>
+    </div>
+</body>
+
+</html>

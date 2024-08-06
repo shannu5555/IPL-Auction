@@ -131,7 +131,7 @@ button:hover {
           margin: 20px;
       }
       
-      input[type="text"] ,input[type="password"],input[type="number"],input[type="email"]{
+      input[type="text"] ,input[type="password"],input[type="number"],input[type="email"],input[type="file"]{
           text-align: center;
           width: 100%;
           padding: 10px;
@@ -192,12 +192,17 @@ button:hover {
                 <div class="form-group" style="padding: 10px;margin-top: 5px;">
                   <label for="exampleInputEmail1" style="padding: 10px;margin-top: 5px;">username</label>
                   <input type="text" style="padding: 10px;margin-top: 10px;" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="username">
-                  
+                  </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1" style="padding: 10px;margin-top: 5px;">Password</label>
                   <input type="password" name="password" style="padding: 10px;margin-top: 5px;" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div>
+                <div class="form-group" style="padding: 10px;margin-top: 5px;">
+                    <label for="image" style="padding: 10px;margin-top: 5px;">Profile Picture</label>
+                    <input type="file" name="image" class="form-control-file" id="image">
+                </div>
                 
+                  
                 
                 <button type="submit" class="btn btn-primary">Submit</button>
              

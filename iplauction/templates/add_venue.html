@@ -1,0 +1,163 @@
+<!-- add_venue.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Venue</title>
+    <style>
+      
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            background-color: #201b1b;
+         /*   background-image: url('bg_img1.jpg');   */
+            background-size: cover;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 0 20px;
+        }
+        
+        form {
+            background-color: #f0f0f0 ;
+            padding: 30px;
+            text-align: center;
+            margin: 0px;
+            border-radius: 20px;
+            box-shadow: 20px 20px 50px #bebebe hidden,
+                -20px -20px 50px #fff;
+                transition: transform 0.3s ease;
+                border: 3px solid transparent;
+        }
+        
+        form:hover {
+            background-color: #f0f0f0;
+            padding: 30px;
+         /*   box-shadow: 20px 20px 50px #bebebe,
+                -20px -20px 50px #fff; */
+                
+        }
+        
+         form:hover {
+            background-color: #201b1b;
+            padding: 30px;
+          /*  box-shadow: 20px 20px 50px #bebebe,
+                -20px -20px 50px #fff;
+                color: white;  */
+                transform: scale(1.1);
+                border-color: white; /* Remove !important */
+            border-width: 3px;
+            color: #bebebe;
+        }   
+        form h1{
+           /* color: blue; */
+            font-weight: bold;
+            font-size: 24px;
+        }
+        .input-container {
+            margin: 20px;
+        }
+        
+        input[type="text"] ,input[type="password"],input[type="number"],input[type="email"]{
+            text-align: center;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            box-shadow: inset 5px 5px 10px #bebebe,
+                inset -5px -5px 10px #fff;
+        }
+        
+        
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 5px 5px 10px #bebebe,
+                -5px -5px 10px #ffffff;
+                font-weight: bold;
+        }
+        
+        button:hover {
+            box-shadow: none;
+            background-color: rgb(43, 32, 32);
+            color: white;
+            font-weight: bold;
+        }
+        
+        p{
+            margin: 20px;
+        }
+        .card{
+            border-radius: 20px;
+            padding: 0px !important;
+            margin: 0 !important;
+            background-color: transparent;
+            border-color: black;
+            border-width: 3px;
+            background-color: #fff;
+        }
+        .card:hover{
+            background-color: #201b1b;
+            color: white;
+            border-color: white;
+        }
+        
+        .logo_img2 {
+            height: 150px;
+            width: 300px;
+            background-size: cover;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        
+        .cont{
+            transition: transform 0.3s ease;
+            border: 3px solid transparent;
+            text-align: center;
+            margin: 0px;
+            border-radius: 20px;
+        
+        }
+        .cont:hover{
+            transform: scale(1.1);
+            border-color: white; 
+            border-width: 3px;
+            background-color: #201b1b;
+            overflow: hidden;
+        }
+            </style>
+</head>
+<body>
+    
+    <form method="post" enctype="multipart/form-data">
+        <h1>ADD VENUE</h1>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

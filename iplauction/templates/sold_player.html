@@ -138,6 +138,10 @@
     .botm_line a:hover{
       background-color: rgb(49, 192, 221);
     }
+    a{
+      text-decoration: none;
+      color: #f1f1f1;
+    }
     </style>
 </head>
 
@@ -160,21 +164,25 @@
             <tr>
                 <th>S.No</th>
                 <th>Player Name</th>
+                <th>ID</th>
                 <th>Player Type</th>
                 <th>Base Price</th>
                 <th>Bought At</th>
                 <th>Team Name</th>
+                <th>Details</th>
             </tr>
         </thead>
         <tbody>
             {% for sold_player in sold_players %}
-                <tr>
+                <tr >
                     <td>{{ forloop.counter }}</td>
-                    <td >{{ sold_player.player.name }}</td>
+                    <td ><a href="{% url 'player_detail' sold_player.player.id %}" >{{ sold_player.player.name }}</a></td>
+                    <td>{{sold_player.player.id}}</td>
                     <td>{{ sold_player.player.playertype }}</td>
                     <td>{{ sold_player.player.base_price }}</td>
                     <td>{{ sold_player.amount }}</td>
                     <td>{{ sold_player.bidder.name }}</td>
+                    <td><a href="{% url 'player_detail' sold_player.player.id %}">Click</a></td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -184,6 +192,13 @@
     
     <br>
     <a href="{% url 'home' %}">Home - Click here to go home</a>
+    <hr/>
+    <h1>Top 10 Sold Players</h1>
+    <ul>
+        {% for sold_player in top_10_sold_players %}
+            <li>{{ sold_player.player.name }} : {{ sold_player.amount }}</li>
+        {% endfor %}
+    </ul>
     <script>
       function refreshPage() {
     window.location.href = '/sold_players/?search=#';

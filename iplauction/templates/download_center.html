@@ -1,0 +1,20 @@
+<!--download_center.html-->
+<form id="download_form" method="GET" action="/render_players/">
+    <button type="submit" id="download_to_excel">Download_to_excel</button>
+</form>
+<!-- Form to download all teams -->
+<form id="download_all_teams_form" method="GET" action="/download_all_teams/">
+    <button type="submit" id="download_all_teams_button">Download All Teams</button>
+</form>
+
+<!-- Form to download team details -->
+<form id="download_team_details_form" method="GET" action="/download_team_details/">
+    <select name="team_name" required>
+        <option value="">Select Team</option>
+        {% for team in teams %}
+            <option value="{{ team.name }}">{{ team.name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" id="download_team_details_button">Download Team Details</button>
+</form>
+{{team}}

@@ -5,7 +5,7 @@
     <!-- selectplaying.html -->
 <form method="post" action="{% url 'start_match' %}">
     {% csrf_token %}
-    <label for="strike_batsman">Select Batsman on Strike:</label>
+    <label for="strike_batsman">Select Batsman on Strikes:</label>
     <select name="strike_batsman" id="strike_batsman">
         <!-- Display available batsmen for the batting team -->
         {% for player in match.batting_team.player_set.all %}

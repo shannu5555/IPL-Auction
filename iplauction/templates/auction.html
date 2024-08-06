@@ -222,10 +222,10 @@
         inset -10px -10px 10px -1px rgba(255, 255, 255, 0.70);
     }
     .profile_bid p{
-        color: wheat;
+        color: #7b818c;
     }
     .profile_bid h2{
-        color: wheat;
+        color: yellow;
         font-size: 40px;
         text-transform: capitalize;
     }
@@ -252,20 +252,20 @@
         margin-top:100px;*/
     }
     .biding-name p{
-        color: red;
+        color: white;
         font-weight: bold;
         font-size: 20px;
     }
     /*TOP*/
     .biding-name{
         font-size: 30px;
-        color: red;
+        color: white;
         font-weight: bold;
         text-align: center;
     }
    /**/
    body{
-        background-color: #121212;
+        background-color: #020c21;
     /*    background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/73f385ae-e909-46b9-9faf-57dc2b09b346/dddraqt-f69a79cb-7e12-4a0c-b581-2dba06365070.png/v1/fit/w_828,h_466,q_70,strp/black_material_ui_background_by_ministerkraft_dddraqt-414w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6IlwvZlwvNzNmMzg1YWUtZTkwOS00NmI5LTlmYWYtNTdkYzJiMDliMzQ2XC9kZGRyYXF0LWY2OWE3OWNiLTdlMTItNGEwYy1iNTgxLTJkYmEwNjM2NTA3MC5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.UtzmPfYs0s4-l9mf1__EQeo_Pg2fsrHUJZZoqPzIU3M'); */
       /*  background-image: url('https://assets.iplt20.com/bcci/articles/1662581418_np-iplImg.png'); */
         background-size: cover;
@@ -328,9 +328,9 @@
                             {% if players.0.picture %}
                                 <img src="{{ players.0.picture.url }}" alt="{{ players.0.name }} Logo" style="max-width: 110px; max-height: 100px;padding-bottom: 5px;">
                             {% else %}
-                                No Logo
+                                <h1 style="font-weight: bold;font-size: 20px;color: #7b818c;">No Logo</h1>
                             {% endif %}
-                                <p style="padding-top: 5px;">Base Price: <span class="biding-p" style="color: red;font-weight: bold;"> {{ players.0.base_price }}</span></p>
+                                <p style="padding-top: 5px;">Base Price: <span class="biding-p" style="color: white;font-weight: bold;"> {{ players.0.base_price }}</span></p>
                         </div>
                     </div>
                     <div class="col-6 d-flex cardd justify-content-center ">
@@ -358,7 +358,9 @@
                     </div>
                 </div>
             </div>
-                
+                {% for team in teams %}
+                    {{picture}}
+                {%endfor%}
         <hr>
             <div class="container  d-flex justify-content-center" >
             <div class="row section_box">

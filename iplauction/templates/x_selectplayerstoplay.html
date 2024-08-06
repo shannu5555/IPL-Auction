@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Django Website</title>
+</head>
+<body>
+    <h1>select playing {{match_id}}</h1>
+    <!-- select_players.html -->
+        {% for player in match.batting_team.player_set.all %}
+            <option value="{{ player.id }}">{{ player.name }}</option>
+        {% endfor %}
+        <form method="post" action="{% url 'x_matchpreview' match_id=match_id %}">
+            {% csrf_token %}
+            
+            <!-- Batting Team Table -->
+            <h2>Batting Team Details</h2>
+            <table>
+                <!-- Table headers -->
+                <thead>
+                    <tr>
+                        <th>sno</th>
+                        <th>ID</th>
+                        <th>Player</th>
+                        <th>Playertype</th>
+                        <th>Select</th>
+                        
+                    </tr>
+                </thead>
+                <!-- Table body -->
+                <tbody>
+                    {% for player in batting_team_players %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{player.id}}</td>
+                            <td>{{ player.player.name }}</td>
+                            <td>{{ player.player.playertype }}</td>
+                            <td><input type="checkbox" name="selected_players" value="{{ player.id }}"></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        
+            <!-- Bowling Team Table -->
+            <h2>Bowling Team Details</h2>
+            <table>
+                <!-- Table headers -->
+                <thead>
+                    <tr>
+                        <th>sno</th>
+                        <th>ID</th>
+                        <th>Player</th>
+                        <th>Playertype</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <!-- Table body -->
+                <tbody>
+                    {% for player in bowling_team_players %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{player.id}}</td>
+                            <td>{{ player.player.name }}</td>
+                            <td>{{ player.player.playertype }}</td>
+                            <td><input type="checkbox" name="selected_players" value="{{ player.id }}"></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        
+            <button type="submit">Start</button>
+        </form>
+        
+        {{bowling_team_players}}
+        {{batting_team_players}} <p>jsj</p>
+        {{batting_players}}
+        {{bowling_players}}
+        <hr/>
+</body>
+</html>

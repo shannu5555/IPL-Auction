@@ -2,14 +2,15 @@
 <html>
   <head> </head>
   <body>
-    <p>Match ID: {{ match_id }}</p>
+    <p>Match ID: {{ match_id}}</p>
     <h2>Batting Team Details</h2>
     {% for playername in batting_team_players %}
     <P>{{ playername.player.name }}</P>
     {% endfor %}
     <hr>
-    {% for player_bid in bowling_team_players %}
-    <P>{{ player_bid.player }}</P>
+    {% for playername in bowling_team_players %}
+    <P>{{ playername.player.name }}</P>
+  <!--  <P>{{ playername.player.name }}</P>  -->
     {% endfor %}
     <hr>
     <p>{{batting_team_players}}</p>
@@ -32,6 +33,7 @@
                     <td>{{ forloop.counter }}</td>
                     <td>{{ player_bid.player.name }}</td>
                     <td>{{ player_bid.player.playertype }}</td>
+                    <td>{{ player_bid.player.runs_scored }}</td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -54,6 +56,7 @@
                     <td>{{ forloop.counter }}</td>
                     <td>{{ player_bid.player.name }}</td>
                     <td>{{ player_bid.player.playertype }}</td>
+                    <td>{{ player_bid.player.runs_scored }}</td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -65,6 +68,35 @@
         <input type="hidden" name="bowling_team_players" value="{{ bowling_team_players|join:',' }}">
         <button type="submit">Start</button>
     </form>
+
+    <button onclick="addRuns()">score p1</button>
+    <button onclick="addRuns()">score p2</button>
+    <!-- Adjust the button onclick attribute to pass the player's ID to the JavaScript function -->
+<button onclick="addRuns('{{ player_bid.player.id }}')">Score {{ player_bid.player.name }}</button>
+
+<script>
+    function addRuns(playerId) {
+        // Find the player element by their ID
+        var playerElement = document.getElementById('player-' + playerId);
+        
+        // Ensure the player element exists
+        if (playerElement) {
+            // Retrieve the current runs scored by the player
+            var runsScoredElement = playerElement.querySelector('.runs-scored');
+            var runsScored = parseInt(runsScoredElement.textContent);
+            
+            // Increment the runs scored by 1
+            runsScored += 1;
+            
+            // Update the displayed runs scored for the player
+            runsScoredElement.textContent = runsScored;
+            
+            // You may also want to send an AJAX request to update the server-side data
+            // This implementation updates the displayed score only
+        }
+    }
+</script>
+
 </body>
 
 </html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Django Website</title>
+</head>
+<body>
+    <h1>select teams</h1>
+    {{teams}}{{teams.id}}
+    {%for team in teams%}
+        {{team.id}}
+    {%endfor%}
+    <hr/>
+  <!-- select_teams.html -->
+
+  <form method="post">
+    {% csrf_token %}
+    <label for="batting_team">Select Batting Team:</label>
+    <select name="batting_team" id="batting_team">
+        {% for team in teams %}
+            <option value="{{ team.id }}">{{ team.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="bowling_team">Select Bowling Team:</label>
+    <select name="bowling_team" id="bowling_team">
+        {% for team in teams %}
+            <option value="{{ team.id }}">{{ team.name }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Stasrt</button>
+</form>
+
+</body>
+</html>

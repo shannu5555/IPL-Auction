@@ -1,0 +1,113 @@
+ {% for player in match.batting_team.player_set.all %}
+            <option value="{{ player.id }}">{{ player.name }}</option>
+        {% endfor %}
+        <form method="post" action="{% url 'x_matchpreview' match_id=match_id %}">
+            {% csrf_token %}
+            
+            <!-- Batting Team Table -->
+            <h2>Batting Team Details</h2>
+            <table>
+                <!-- Table headers -->
+                <thead>
+                    <tr>
+                        <th>sno</th>
+                        <th>ID</th>
+                        <th>Player</th>
+                        <th>Playertype</th>
+                        <th>Select</th>
+                        
+                    </tr>
+                </thead>
+                <!-- Table body -->
+                <tbody>
+                    {% for player in batting_team_players %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{player.1}}</td>
+                            <td>{{player.0}}</td>
+                            <td>{{player.2}}</td>
+                            <td><input type="checkbox" name="selected_players" value="{{ player.id }}"></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        
+            <!-- Bowling Team Table -->
+            <h2>Bowling Team Details</h2>
+            <table>
+                <!-- Table headers -->
+                <thead>
+                    <tr>
+                        <th>sno</th>
+                        <th>ID</th>
+                        <th>Player</th>
+                        <th>Playertype</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <!-- Table body -->
+                <tbody>
+                    {% for player in bowling_team_players %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{player.1}}</td>
+                            <td>{{player.0}}</td>
+                            <td>{{player.2}}</td>
+                            <td><input type="checkbox" name="selected_players" value="{{ player.id }}"></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        
+            <button type="submit">Start</button>
+        </form>
+
+
+--------------------------------------------------------------------------------
+
+match_preview
+
+
+<form method="post" action="{% url 'home' %}">
+
+        {% csrf_token %}
+        
+        <h2>Select Openers</h2>
+        {% for player in batting_team_players %}
+                
+                <P>{{player.name}}</P>
+            {% endfor %}
+        <P>h</P>
+
+        <!-- Select a player to open strike from 11 players of batting team -->
+        <!-- Select a player to open strike from 11 players of batting team -->
+        <label for="strike_batsman">Strike Batsman:</label>
+        <select name="strike_batsman" id="strike_batsman">
+            {% for player in batting_team_players %}
+                <option value="{{ player }}">{{ player}}</option>
+            {% endfor %}
+        </select>
+        
+        <label for="non_strike_batsman">Non-Strike Batsman:</label>
+        <select name="non_strike_batsman" id="non_strike_batsman">
+            {% for player in batting_team_players %}
+                <option value="{{ player}}">{{ player }}</option>
+                <P>{{player.player.name}}</P>
+            {% endfor %}
+        </select>
+        
+        <label for="opening_bowler">Opening Bowler:</label>
+        <select name="opening_bowler" id="opening_bowler">
+            {% for player in bowling_team_players %}
+                <option value="{{ player }}">{{ player }}</option>
+            {% endfor %}
+        </select>
+        
+
+        <button type="submit">Submit</button>
+    </form>
+
+
+
+    ----------------------------------------------------------------------------
+

@@ -1,15 +1,9 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Initial Players Selection</title>
-    <!-- Add any additional CSS styling or links here -->
-</head>
-
 <body>
     <h1>Select Openers and Bowler</h1>
+    {% for player_name in batting_team_players %}
+    <option value="{{ player_name }}">{{player_name }}</option>
+{% endfor %}
     <hr>
     {{batting_team_players}}
     
@@ -31,12 +25,13 @@
     <hr>
     <hr>
     {% for player in batting_team_players %}
+        <p>hi</p>
         <P>{{player}}</P>
     {% endfor %}
     <hr>
 
     
-        <form method="post" action="{% url 'initial_players' %}">
+        <form method="post" action="{% url 'abc' %}">
 
         {% csrf_token %}
         
@@ -79,5 +74,4 @@
 
     <!-- Add any additional JavaScript scripts or links here -->
 </body>
-</html>
 

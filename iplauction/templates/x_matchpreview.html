@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Django Website</title>
+</head>
+<body>
+    <p>Match ID: {{ match_id}}</p>
+    <h2>Batting Team Detailss</h2>
+    {% for playername in batting_team_players %}
+    <P>{{ playername.player.name }}</P>
+    {% endfor %}
+    <hr>
+    {% for playername in bowling_team_players %}
+    <P>{{ playername.player.name }}</P>
+  <!--  <P>{{ playername.player.name }}</P>  -->
+    {% endfor %}
+    <hr>
+    <p>{{batting_team_players}}</p>
+    <p>{{selected_players}}s</p>
+    <hr>
+    <h1>Batting team : {{batting_team}}</h1>
+    <table>
+        <!-- Table headers -->
+        <thead>
+            <tr>
+                <th>sno</th>
+                <th>Player</th>
+                <th>Playertype</th>
+            </tr>
+        </thead>
+        <!-- Table body -->
+        <tbody>
+            {% for player_bid in batting_team_players %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ player_bid.player.player.name }}</td>
+                    <td>{{ player_bid.player.playertype }}</td>
+                    <td>{{player_bid.player.runs_scored}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Bowling Team : {{bowling_team}}</h2>
+    <table>
+        <!-- Table headers -->
+        <thead>
+            <tr>
+                <th>sno</th>
+                <th>Player</th>
+                <th>Playertype</th>
+            </tr>
+        </thead>
+        <!-- Table body -->
+        <tbody>
+            {% for player_bid in bowling_team_players %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ player_bid.player.name }}</td>
+                    <td>{{ player_bid.player.playertype }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <form method="post" action="{% url 'y_a' match_id=match_id %}">
+        {% csrf_token %}
+        <input type="hidden" name="batting_team_players" value="{{ batting_team_players|join:',' }}">
+        <input type="hidden" name="bowling_team_players" value="{{ bowling_team_players|join:',' }}">
+        <button type="submit">Start</button>
+    </form>
+    <hr/>
+    
+</body>
+</html> 

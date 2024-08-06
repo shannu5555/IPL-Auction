@@ -1,0 +1,133 @@
+
+def match_preview(request, match_id):
+
+    match = get_object_or_404(Match, id=match_id)
+    selected_player_ids = request.POST.getlist('selected_players')
+
+    selected_players = Bid.objects.filter(id__in=selected_player_ids)
+    batting_team_players = selected_players.filter(bidder=match.batting_team)
+    bowling_team_players = selected_players.filter(bidder=match.bowling_team)
+
+    return render(request, 'match_preview.html', {
+        'batting_team': match.batting_team,
+        'bowling_team': match.bowling_team,
+        'selected_players': selected_players,
+        'batting_team_players': batting_team_players,
+        'bowling_team_players': bowling_team_players,
+        
+    })
+
+def match_preview(request, match_id):
+    match = get_object_or_404(Match, id=match_id)
+    selected_player_ids = request.POST.getlist('selected_players')
+
+
+    selected_players = Bid.objects.filter(id__in=selected_player_ids)
+    batting_team_players = selected_players.filter(bidder=match.batting_team)
+    bowling_team_players = selected_players.filter(bidder=match.bowling_team)
+
+    return render(request, 'match_preview.html', {
+        'match_id' : match_id,
+        'batting_team': match.batting_team,
+        'bowling_team': match.bowling_team,
+        'selected_players': selected_players,
+        'batting_team_players': batting_team_players,
+        'bowling_team_players': bowling_team_players,
+    })
+
+
+
+def initial_players(request):
+    
+    if request.method == 'POST':
+        batting_team_players = request.POST.getlist('batting_team_players').split(',')
+        bowling_team_players = request.POST.get('bowling_team_players').split(',')
+
+        # Get the first two players as opening batsmen
+        opening_batsmen = batting_team_players[:2]
+
+        # Get the first player as the opening bowler
+        opening_bowler = bowling_team_players[0]
+        
+        return render(request, 'initialplayers.html', {
+            'batting_team_players': batting_team_players,
+            'bowling_team_players': bowling_team_players,
+            'opening_batsmen': opening_batsmen,
+            'opening_bowler': opening_bowler,  
+        })
+
+    return render(request, 'initialplayers.html')
+
+---------------------------------------------------------------------------------------
+
+def x_matchpreview(request,match_id):
+    match = get_object_or_404(Match, id=match_id)
+    selected_player_ids = request.POST.getlist('selected_players')
+    
+    
+    selected_players = Bid.objects.filter(id__in=selected_player_ids)
+    batting_team_players = Bid.objects.filter(bidder=match.batting_team)
+    bowling_team_players = Bid.objects.filter(bidder=match.bowling_team)
+    batting_team_players = Bid.objects.filter(bidder=match.batting_team).values_list('player__name', 'player__id','player__playertype','player__runs_scored')
+    bowling_team_players = Bid.objects.filter(bidder=match.bowling_team).values_list('player__name', 'player__id','player__playertype','player__runs_scored')
+    bidder=match.batting_team
+    return render(request, 'x_matchpreview.html', {
+        'match_id' : match_id,
+        'batting_team': match.batting_team,
+        'bowling_team': match.bowling_team,
+        'selected_players': selected_players,
+        'batting_team_players': batting_team_players,
+        'bowling_team_players': bowling_team_players,
+        'bidder': 'bidder'
+    })
+
+
+def x_matchpreview(request, match_id):
+    match = get_object_or_404(Match, id=match_id)
+
+    if request.method == 'POST':
+        selected_player_ids = request.POST.getlist('selected_players')
+        
+        # Filter out empty strings from selected_player_ids
+        selected_player_ids = [id for id in selected_player_ids if id]
+        
+        # Retrieve selected players only if there are valid IDs
+        if selected_player_ids:
+            selected_players = Bid.objects.filter(id__in=selected_player_ids)
+            
+            # Perform operations with selected players
+            
+            # Update the match preview or perform any necessary actions
+            # For example, you can calculate scores, update teams, etc.
+
+            # Render the updated match preview template
+            return render(request, 'x_matchpreview.html', {
+                'match': match,
+                'selected_players': selected_players,
+            })
+
+    # Handle GET request (initial loading of the page or invalid IDs)
+    return render(request, 'x_matchpreview.html', {
+        'match': match,
+    })
+    ---------------------------------------------------------------------------------------------------
+
+
+
+    def x_selectplayerstoplay(request, match_id):
+    match = get_object_or_404(Match, id=match_id)
+
+    # Retrieve players for the batting and bowling teams
+    batting_team_players = Bid.objects.filter(bidder=match.batting_team).values_list('player__name', 'player__id','player__playertype','player__runs_scored')
+    bowling_team_players = Bid.objects.filter(bidder=match.bowling_team).values_list('player__name', 'player__id','player__playertype','player__runs_scored')
+
+
+    return render(request, 'x_selectplayerstoplay.html', {
+        'batting_team': match.batting_team,
+        'bowling_team': match.bowling_team,
+        'batting_team_players': batting_team_players,
+        'bowling_team_players': bowling_team_players,
+        'match_id': match_id,
+    })
+
+------------------------------------------------------------

@@ -20,9 +20,11 @@ select_players_to.html
             <thead>
                 <tr>
                     <th>sno</th>
+                    <th>ID</th>
                     <th>Player</th>
                     <th>Playertype</th>
                     <th>Select</th>
+                    
                 </tr>
             </thead>
             <!-- Table body -->
@@ -30,6 +32,7 @@ select_players_to.html
                 {% for player in batting_team_players %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
+                        <td>{{player.id}}</td>
                         <td>{{ player.player.name }}</td>
                         <td>{{ player.player.playertype }}</td>
                         <td><input type="checkbox" name="selected_players" value="{{ player.id }}"></td>
@@ -45,6 +48,7 @@ select_players_to.html
             <thead>
                 <tr>
                     <th>sno</th>
+                    <th>ID</th>
                     <th>Player</th>
                     <th>Playertype</th>
                     <th>Select</th>
@@ -55,6 +59,7 @@ select_players_to.html
                 {% for player in bowling_team_players %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
+                        <td>{{player.id}}</td>
                         <td>{{ player.player.name }}</td>
                         <td>{{ player.player.playertype }}</td>
                         <td><input type="checkbox" name="selected_players" value="{{ player.id }}"></td>

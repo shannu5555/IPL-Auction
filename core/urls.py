@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf import settings
+from django.contrib import admin
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -36,14 +37,15 @@ from iplauction.views import (
     delete_player,
     delete_team,
     homi,
-    login_page,register,logout_page,abc,select_teams, match_preview,select_players_to_play,
-    match_preview,initial_players,
+    login_page,register,logout_page,abc,select_teams, match_preview,select_players_to_play,like_post,dislike_post,showerror,aaa,
+    match_preview,initial_players,player_detail,x_selectteam,x_selectplayerstoplay,x_matchpreview,add_venue,all_venues,delete_venue,all_of_teams,all_of_team_details,post_list,add_blog,update_blog,delete_blog,
+    y_a,view_all_users,render_players,download_center,download_all_teams, download_team_details,top_10_buys,top_10_runs,add_score,increase_runs,decrease_runs,save_runs,increase_matches_played,decrease_matches_played,save_matches_played,
 )
 
 urlpatterns = [
     path('', home, name='home'),
     path('homi/', homi, name='homi'),
-    
+    path('admin/', admin.site.urls),
     path('abc/', abc, name='abc'),
     path('create_team/', create_team, name='create_team'),
     path('all_teams/', all_teams, name='all_teams'),
@@ -65,15 +67,54 @@ urlpatterns = [
      path('initial_players/', initial_players, name='initial_players'),
      
 
-
-
-    
-    
-    
-    
-    
+    path('player_detail/<int:player_id>/', player_detail, name='player_detail'),
 
     
+    path('x_selectteam/',x_selectteam , name='x_selectteam'),
+    path('x_selectplayerstoplay/<int:match_id>/',x_selectplayerstoplay , name='x_selectplayerstoplay'),
+    path('x_matchpreview/<int:match_id>/',x_matchpreview , name='x_matchpreview'),
+    
+    
+    path('add_venue/', add_venue, name='add_venue'),
+    path('all_venues/', all_venues, name='all_venues'),
+    path('delete_venue/<int:venue_id>/', delete_venue, name='delete_venue'),
+    path('delete_venue/<int:venue_id>/', delete_venue, name='delete_venue'),
+
+    path('all_of_teams/', all_of_teams, name='all_of_teams'),
+    path('all_of_team_deatils/<int:team_id>/', all_of_team_details, name='all_of_team_details'),
+
+    path('y_a/<int:match_id>/', y_a, name='y_a'),
+
+    path('view_all_users/', view_all_users, name='view_all_users'),
+
+    path('render_players/', render_players, name='render_players'),
+    path('download_center/', download_center, name='download_center'),
+    path('download_all_teams/', download_all_teams, name='download_all_teams'),
+    path('download_team_details/<str:team_name>/', download_team_details, name='download_team_details'),
+
+    path('top_10_buys/', top_10_buys, name='top_10_buys'),
+    path('top_10_runs/', top_10_runs, name='top_10_runs'),
+    path('add_score/', add_score, name='add_score'),
+   
+    path('increase_runs/<int:player_id>/', increase_runs, name='increase_runs'),
+    path('decrease_runs/<int:player_id>/', decrease_runs, name='decrease_runs'),
+    path('save_runs/<int:player_id>/', save_runs, name='save_runs'),
+
+    path('increase_matches_played/<int:player_id>/',increase_matches_played, name='increase_matches_played'),
+    path('decrease_matches_played/<int:player_id>/', decrease_matches_played, name='decrease_matches_played'),
+    path('save_matches_played/<int:player_id>/', save_matches_played, name='save_matches_played'),
+
+    path('post_list/', post_list, name='post_list'),
+    path('addblog/', add_blog, name='add_blog'),
+
+    path('update_blog/<int:pk>/', update_blog, name='update_blog'),
+    path('delete_blog/<int:pk>/', delete_blog, name='delete_blog'),
+
+    path('like/<int:pk>/', like_post, name='like_post'),
+    path('dislike/<int:pk>/', dislike_post, name='dislike_post'),
+
+    path('showerror/', showerror, name='showerror'),
+    path('aaa/', aaa, name='aaa'),
 ]
 
 if settings.DEBUG:

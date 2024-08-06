@@ -1,0 +1,268 @@
+<h1>add_score</h1>
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>all venues Details</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/20c5629a29.js" crossorigin="anonymous"></script>
+        
+        <style>
+            :root {
+        --first-color: red;
+        /**/
+        --white-color: #FAFAFF;
+        /*white*/
+        --dark-color: #2A3B47;
+        /*contact bottom*/
+        --text-color: #697477;
+        /* #697477   #cfd1d3 light grey for content*/
+        --textH-color: #697477;
+        --textP-color: #9fa3a7;
+        --bg-color: #0F1215;
+        /*bg color defualt #0F1215 = dark grey #4F91CD*/
+        --head-color: #2febf9;
+        /*head color Default=red*/
+        --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+        --bs-primary-rgb: 13, 110, 253;
+        /*nav blue color*/
+        --bs-orange: #fd7e14;
+        --tab-color: #15222e;
+        --bgb-color: #09636C;
+        /*#09636C*/
+        --bhead-color: #1ca8b9;
+        /*#03F8D9*/
+        --bpara-color: #1ca8b9;
+        /*#29ECFF*/
+        --blight-color: #040d17;
+        /* #01b6b9  #7FDFD3*/
+        --bdt-color: #040e14;
+        --blgt-color: ;
+        --bltr-color: ;
+        --b1-color: #1ca8b9;
+        /*#1ca8b9*/
+        --b2-color: #1eb0a8;
+        /*#1eb0a8*/
+        --b3-color: #038d91;
+        /*#038d91*/
+        --b4-color: #33fffe;
+        /*#33fffe*/
+        --b5-color: #09789b;
+    
+    }
+            body {
+                font-family: Arial, sans-serif;
+                background-color:  #CADCFC; /*#040e14*/
+                padding: 10px;
+                justify-content: center;
+            }
+    
+            .card {
+                background-color: white;
+                border: 2px solid black;
+                border-radius: 18px;
+                padding: 20px;
+                
+                margin-right: 50px;
+                margin-bottom: 20px;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                width: 80%;
+                background-color: #00246B;/*#15222e*/
+                margin-left: 150px;
+                color:  #038d91;
+                font-family: Courier;
+            }
+    
+            .venue-name {
+                font-size: 24px;
+                font-weight: bold;
+                
+                text-align: center;
+                color: #333;
+            }
+    
+            .venue-image {
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .venue-image P{
+              /*  margin-bottom: 10px;*/
+                margin-right: 7px;
+            }
+    
+            .venue-details {
+               padding: 20px; 
+                background-color: #15222e;
+                border-radius: 10px;
+                
+            }
+    
+            .venue-details p {
+               margin-bottom: 5px;
+                margin-right: 7px;
+            }
+            
+            .venue-details span{
+                font-weight: bold;
+                margin-left: 7px;
+            }
+    
+        /*    .button-container {
+                text-align: center;
+                margin-top: 10px;
+            }
+    
+            .button-container .btn {
+                margin-right: 10px;
+            } */
+            .button-container {
+            display: flex;
+            align-items: center;
+            padding-bottom: 5px;
+        }
+
+        .btn {
+            background-color: #1ca8b9;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin-right: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 12px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0c7a8c;
+        }
+        </style>
+    </head>
+    <body>
+        <h1 style="text-align: center;color: #1ca8b9;">add score to players</h1>
+    
+        {% for player in players %}
+        <div class="card">
+            <div class="venue-name">
+              <!-- {{ venue.venue_name }} --> 
+            </div>
+            <div class="row">
+                <div class="col-md-6 venue-image">
+                    {% if player.picture %}
+                    <img src="{{ player.picture.url }}" alt="{{ player }} Picture" style="max-width: 180px; max-height: 180px;">
+                    {% else %}
+                    <h2>NO LOGO</h2>
+                    {% endif %}
+                </div>
+                <div class="col-md-6 venue-details">
+                    <p >Player Name:<span style="color: yellow;">{{ player.name }}</span></p>
+                    <p>Runs :<span>{{ player.runs_scored  }}</span></p>
+                    
+                    <p>Matches :<span>{{ player.matches_played  }}</span><br>Average :<span>{{player.average_runs_per_match}}</span></p>
+                    
+               <!--    <p>Player ID: <span>{{ player.id }}</span></p>
+                    <p>Runs<span>{{ player.runs_scored  }}</span></p>
+                    <p>wickets:<span>{{ player.wickets_taken }}</span> </p>
+                    <p>Country<span>{{ player.international_team_name }}</span> </p> 
+                    <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+                --> 
+                    <div class="button-container">
+                        <p >RUNS :</p>
+                        <button class="btn" style="color: white;" onclick="increaseRuns('{{ player.id }}')">+</button>
+                        <button class="btn" style="color: white;" onclick="decreaseRuns('{{ player.id }}')">-</button>
+                        <button class="btn" style="color: white;" onclick="saveRuns('{{ player.id }}')">Save</button>
+                    </div>
+                    
+                    
+                    <div class="button-container">
+                        <P>MATCHES :</P>
+                        <button class="btn" style="color: white;" onclick="increaseMatchesPlayed('{{ player.id }}')">+</button>
+                        <button class="btn" style="color: white;"  onclick="decreaseMatchesPlayed('{{ player.id }}')">-</button>
+                        <button class="btn" style="color: white;" onclick="saveMatchesPlayed('{{ player.id }}')">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </body>
+
+    <h1>Top 10 Players</h1>
+    <ul>
+        {% for player in players %}
+            <li>{{ player.name }}: {{ player.runs_scored }}</li>
+        {% endfor %}
+    </ul>
+    <script>
+        function increaseRuns(playerId) {
+            fetch(`/increase_runs/${playerId}`)
+                .then(response => {
+                    if (response.ok) {
+                        location.reload(); // Refresh the page to update the runs displayed
+                    } else {
+                        console.error('Failed to increase runs');
+                    }
+                });
+        }
+    
+        function decreaseRuns(playerId) {
+            fetch(`/decrease_runs/${playerId}`)
+                .then(response => {
+                    if (response.ok) {
+                        location.reload(); // Refresh the page to update the runs displayed
+                    } else {
+                        console.error('Failed to decrease runs');
+                    }
+                });
+        }
+    
+        function saveRuns(playerId) {
+            fetch(`/save_runs/${playerId}`)
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Runs saved permanently');
+                    } else {
+                        console.error('Failed to save runs');
+                    }
+                });
+        }
+    </script>
+    <script>
+        function increaseMatchesPlayed(playerId) {
+            fetch(`/increase_matches_played/${playerId}`)
+                .then(response => {
+                    if (response.ok) {
+                        location.reload(); // Refresh the page to update the matches played displayed
+                    } else {
+                        console.error('Failed to increase matches played');
+                    }
+                });
+        }
+    
+        function decreaseMatchesPlayed(playerId) {
+            fetch(`/decrease_matches_played/${playerId}`)
+                .then(response => {
+                    if (response.ok) {
+                        location.reload(); // Refresh the page to update the matches played displayed
+                    } else {
+                        console.error('Failed to decrease matches played');
+                    }
+                });
+        }
+    
+        function saveMatchesPlayed(playerId) {
+            fetch(`/save_matches_played/${playerId}`)
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Matches played saved permanently');
+                    } else {
+                        console.error('Failed to save matches played');
+                    }
+                });
+        }
+    </script>
+    </html>

@@ -76,22 +76,27 @@
 }
 
 .dropdown-content {
-    display: none; /* Hide the dropdown content by default */
-    position: absolute; /* Position the dropdown content absolutely */
-    background-color: #333; /* Background color of the dropdown content */
-    min-width: 120px; /* Minimum width of the dropdown content */
-    z-index: 1; /* Set the z-index to ensure it appears above other elements */
-}
-
-.dropdown-content a {
-    color: #fff; /* Color of the dropdown links */
-    padding: 10px; /* Padding for the dropdown links */
-    display: block; /* Display the dropdown links as block elements */
+    display: none; 
+    position: absolute;
+    background-color: #333;
+    min-width: 120px; 
+    z-index:1;
 }
 
 .dropdown:hover .dropdown-content {
-    display: block; /* Display the dropdown content when hovered */
+    display: block; 
 }
+
+
+
+.dropdown-content a {
+    color: #fff; /* Color of the dropdown links */
+    padding: 5px; /* Padding for the dropdown links */
+    display: block; /* Display the dropdown links as block elements */
+    text-align: center;
+}
+
+
 
 #chatbox-container {
         width: 500px;
@@ -303,7 +308,14 @@ footer {
         padding-top: 25px;
         margin-top: 20px;
     }
+    .carousel-inner h5{
+        text-align: center;
+        padding-bottom: 20px;
+        padding-top: 0px;
+        color: #726c75;
+        font-weight: bold;
 
+    }
  
     </style>
 
@@ -335,7 +347,7 @@ footer {
         
         <li><a class="nav-link" href="{% url 'all_players' %}"><i class="far fa-clone"></i>All Players</a></li>
         <li class="dropdown">
-            <a href="#">Services</a>
+            <a href="#">More Feutures</a>
             <div class="dropdown-content">
                 <a class="nav-link" href="{% url 'add_venue' %}"><i class="far fa-calendar-alt"></i>Add Venue</a>
                 <a class="nav-link" href="{% url 'all_venues' %}"><i class="far fa-calendar-alt"></i>All Venues</a>
@@ -371,6 +383,7 @@ footer {
 <main class="p-3 m-0 border-0 bd-example m-0 border-0">
     <div id="carouselExampleSlidesOnly" style="background-color: #101820;" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
+            <h5 >Daily Newz</h5>
             {% for post in posts %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
                 {%if post.image %}
@@ -379,7 +392,7 @@ footer {
                 no Logo
                 {%endif%}
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>{{ post.title }}</h5>
+                    <h4>{{ post.title }}</h4>
                    <!-- <p>{{ post.description }}</p> -->
                 </div>
             </div>
@@ -574,14 +587,14 @@ footer {
                     <li>
                         <div class="follow-us-icon-container ml-3">
                             <i class="fas fa-envelope icon a"></i>
-                            <p class="b" style="margin-left: 10px;"><span>Email: support@monosage.com</span></p>
+                            <p class="b" style="margin-left: 10px;"><span>Email: shaik.sagir786.com</span></p>
                         </div>
 
                     </li>
                     <li>
                         <div class="follow-us-icon-container ml-3">
                             <i class="fas  fa-phone  icon a"></i>
-                            <p class="b" style="margin-left: 10px;"><span>Phone: +91 99088 31216</span></p>
+                            <p class="b" style="margin-left: 10px;"><span>Phone: +91 6304699338</span></p>
                         </div>
 
                     </li>

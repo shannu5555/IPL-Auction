@@ -63,8 +63,8 @@
           padding: 30px;
         /*  box-shadow: 20px 20px 50px #bebebe,
               -20px -20px 50px #fff;
-              color: white;  */
-              transform: scale(1.1);
+              color: white;  
+              transform: scale(1.1);*/
               border-color: white; /* Remove !important */
           border-width: 3px;
           color: #bebebe;
@@ -122,9 +122,10 @@
           border-color: black;
           border-width: 3px;
           background-color: #fff;
-          height: 100vh;
+          height: 85vh;
           width: 100% !important;
           display: block;
+          padding-top: 15px;
           
       }
       .card:hover{
@@ -153,7 +154,7 @@
       
       }
       .cont:hover{
-          transform: scale(1.1);
+        /*  transform: scale(1);*/
           border-color: white; 
           border-width: 3px;
           background-color: #201b1b;
@@ -167,7 +168,7 @@
         <div class="row">
             <div class="d-flex flex-row card">
                 <div style="align-items: center;" class="cont d-flex col-6 justify-content-center">
-                    <a href="https://monosage.com/home">
+                    <a href="">
                         <img class="logo_img2" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhuey_8VKd-PkrlcSkLgGDMVxFfczgI5nEeEDadAgBLy9tE9DXMH7axynfMTg1WoQItWyJyK5mIa50CW65iNTIVRetq3dlAbvGBNxgyTzJ73jLVbo3e240AC1eriS71J9hCU7L_f5zgapKLqMYIFT-MroRk-HzKyGlnkTtTFA5LmPalHnfPt_LM0mop/s1920/Original%20Indian%20Premier%20League%20IPL%20Logo%20PNG%20Transparent%20Images%20File%20Download%20Free%20Download.png">
                     </a>
                     
@@ -180,7 +181,7 @@
         <button class="btn btn-primary" type="submit">Submit Player</button>
         <a href="{% url 'all_players' %}">Click here to display all players</a><br>
     <a href="{% url 'homi' %}">Home - Click here to go home</a>
-    </form>
+                </form>
                 
             </div>
             

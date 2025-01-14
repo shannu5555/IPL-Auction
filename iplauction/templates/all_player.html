@@ -186,7 +186,7 @@ button a{
                     <td><button><a href="{% url 'delete_player' player.id %}" onclick="return confirm('Are you sure you want to delete {{ player.name }}?')">Delete</a></button></td> 
                     <!-- Add delete functionality as needed -->
                     <td><button><a href="{% url 'player_detail' player.id %}" >Detail</a></button></td>
-                    <td>{{player.international_team_name}}</td>
+                    <!-- <td>{{player.international_team_name}}</td>-->
                 </tr>
             {% endfor %}
         </tbody>
@@ -196,16 +196,16 @@ button a{
     
     <br>
     <div class="botm_line">
-         <button style="background-color: blue;color: white;"><a class="btn btn-primary" style="color: white;" href="{% url 'homi' %}">Home - Click here to go home</a></button> 
+         <button style="background-color: blue;color: white;"><a class="btn btn-primary" style="color: white;" href="{% url 'home' %}">Home - Click here to go home</a></button> 
     </div>
-  <hr/>
-  <h1>Top 10 Players</h1>
+  
+ <!-- <h1>Top 10 Players</h1>
     <ul>
         {% for player in top_10_players %}
             <li>{{ player.name }}: {{ player.runs_scored }}</li>
         {% endfor %}
     </ul>
-
+-->
 
 </body>
 </html>

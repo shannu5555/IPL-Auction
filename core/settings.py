@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-(@!az^vqx2np(a&3+hj=i-l_jw2v#7tk0k0v3#ebnc#_w_gvix
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sagir.pythonanywhere.com', 'www.sagir.pythonanywhere.com','127.0.0.1','127.0.0.1']
+
+
 
 
 # Application definition
@@ -39,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'iplauction',
+    
+
 ]
 
 MIDDLEWARE = [
@@ -132,9 +136,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
-STATICFILES_DIR={
-    os.path.join(BASE_DIR,'public/static')
-}
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'public/static'),
+]
 MEDIA_ROOT=os.path.join(BASE_DIR,'public/static')
 MEDIA_URL='/media/'
 

@@ -140,6 +140,7 @@ td:last-child {
         font-size: 10px;
         width: 100%;
         text-align: center;
+        color: white;
     }
     .ppcount{
         font-size: 15px;
@@ -157,6 +158,25 @@ td:last-child {
     }
     .para{
         color: #333;
+        color: white;
+    }
+    .aa{
+        text-align: center;
+        align-items: center;
+    }
+    table tr td p{
+        
+        align-items: center;
+        text-align: center;
+    }
+    table thead tr th{
+        align-items: center;
+        text-align: center;
+    }
+
+    table  tr th{
+        align-items: center;
+        text-align: center;
     }
    
 </style>
@@ -164,7 +184,7 @@ td:last-child {
     <div class="pdetails">
         
         <div>
-            <h2 class="biding-name">{{ team.name }} Squad  ID :{{team.id}}</h2>
+            <h2 class="biding-name">{{ team.name }}   [ ID :{{team.id}} ]</h2>
             
             <img src="{{ team.picture.url }}" alt="{{ team.name }} Logo" style="max-width: 100px; max-height: 100px;">
         </div>
@@ -198,7 +218,7 @@ td:last-child {
                     <td>{{ player.player.playertype }}</td>
                     <td>{{ player.player.base_price }}</td>
                     <td>{{ player.amount }}</td>
-                    <td>{{player.player.id}}</td>
+                    <td style="text-align: center;">{{player.player.id}}</td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -242,7 +262,7 @@ td:last-child {
             </tr>
         </table>
     </div>
-
+<!--
     <hr>
     
 
@@ -253,9 +273,9 @@ td:last-child {
     
 
     <hr>
-    
+--> 
     <br>
-    <a href="{% url 'all_teams' %}">Back to All Teams</a><br>
-    <a href="{% url 'home' %}">Home - Click here to go home</a>
+    <a href="{% url 'all_teams' %}" class="aa">Back to All Teams</a><br>
+    <a href="{% url 'home' %}" class="aa">Home - Click here to go home</a>
 </body>
 </html>

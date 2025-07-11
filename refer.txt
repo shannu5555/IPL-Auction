@@ -76,3 +76,16 @@ A .ssh/config file for managing multiple keys
 SSH setup for GitLab too (if needed)
 
 .gitignore suggestions for Docker/Django projects
+
+=========================================================================================================
+#TO MIGRATE APP AFTER RUNNING 
+
+docker exec -it 8daec792ce90 bash
+python manage.py migrate
+
+=========================================================================================================
+
+ALLOWED_HOSTS
+
+settings.py
+allowed host = ['yourhiost']

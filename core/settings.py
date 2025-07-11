@@ -22,7 +22,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-(@!az^vqx2np(a&3+hj=i-l_jw2v#7tk0k0v3#ebnc#_w_gvix'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -139,9 +138,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'public/static'),
 ]
-MEDIA_ROOT=os.path.join(BASE_DIR,'public/static')
-MEDIA_URL='/media/'
+#MEDIA_ROOT=os.path.join(BASE_DIR,'public/static')
+#MEDIA_URL='/media/'
+# Static files
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'public/static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # For collectstatic
 
+# Media files (uploads like teampics)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #########################
 

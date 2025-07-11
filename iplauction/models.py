@@ -21,10 +21,15 @@ class Team(models.Model):
         # Retrieve the player names associated with the team's bids
         return [bid.player.name for bid in self.bid_set.all()]
     
+    def squad_count(self):
+        return self.bid_set.count()
+    
     def total_amount_spent(self):
         bids = self.bid_set.filter(amount__gt=0)
         total_spent = bids.aggregate(Sum('amount'))['amount__sum'] or 0
         return float(self.amount - total_spent) 
+    
+    
 
 class Player(models.Model):
     name=models.CharField(max_length=100)

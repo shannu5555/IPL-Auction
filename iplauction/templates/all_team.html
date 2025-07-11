@@ -151,6 +151,7 @@ button a{
             <tr>
                 <th>Team LOGO</th>
                 <th>Team Name</th>
+                <th>players count</th>
                 <th>Base Amount</th>
                 <th>Total Purse Remaining</th>
                 <th>Delete Team</th>
@@ -169,6 +170,8 @@ button a{
                         {% endif %}
                     </td>
                     <td style="font-weight: bold;">{{ team.name }}</td>
+                    <td style="font-weight: bold;">{{ team.squad_count }}</td>
+
                     <td>{{ team.amount }}</td>
                     <td>{{team.total_amount_spent}}</td>
                   <!-- <td><a href="{% url 'delete_team' team.id %}" onclick="return confirm('Are you sure you want to delete {{ team.name }}?')">Delete</a></td>-->  <!-- Add delete functionality as needed -->
@@ -192,6 +195,7 @@ button a{
     {% endfor %}
     <hr> --> 
     <p style="color: white;">{{batsmen_count }}</p>
+    <p>{{team.squad_count}}</p>
     <br>
     <div class="botm_line">
       <a  href="{% url 'homi' %}">Home</a>

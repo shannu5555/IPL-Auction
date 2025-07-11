@@ -1,0 +1,78 @@
+Let’s Generate and Use an SSH Key for GitHub
+Follow these commands exactly on your server:
+
+🔐 Step 1: Generate SSH Key
+
+ssh-keygen -t rsa -b 4096 -C "your-email@example.com"
+
+When prompted:
+
+Press Enter to save to default path: /root/.ssh/id_rsa
+Press Enter twice again (for no passphrase)
+------------------------------------------------
+📋 Step 2: Show and Copy the Public Key
+
+cat ~/.ssh/id_rsa.pub
+You'll see something like:
+
+------------------------------------
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQ... your-email@example.com
+📌 Copy the entire line.
+
+🔗 Step 3: Add the SSH Key to GitHub
+Go to https://github.com/settings/keys
+
+Click "New SSH Key"
+
+Title: VM Key or Docker Server
+
+Paste the copied key
+
+Click Add SSH Key
+
+🔁 Step 4: Set Your Git Remote to Use SSH
+Inside your project directory:
+
+bash
+Copy
+Edit
+cd ~/IPL-Auction
+git remote set-url origin git@github.com:shannu5555/IPL-Auction.git
+Then confirm:
+
+bash
+Copy
+Edit
+git remote -v
+It should now show:
+
+scss
+Copy
+Edit
+origin  git@github.com:shannu5555/IPL-Auction.git (fetch)
+origin  git@github.com:shannu5555/IPL-Auction.git (push)
+🚀 Step 5: Test the SSH Connection
+bash
+Copy
+Edit
+ssh -T git@github.com
+On success:
+
+vbnet
+Copy
+Edit
+Hi shannu5555! You've successfully authenticated, but GitHub does not provide shell access.
+✅ Step 6: Push to GitHub (No token required!)
+bash
+Copy
+Edit
+git push origin main
+🎉 You're now using SSH authentication securely with GitHub from your VM!
+
+Let me know if you'd also like:
+
+A .ssh/config file for managing multiple keys
+
+SSH setup for GitLab too (if needed)
+
+.gitignore suggestions for Docker/Django projects

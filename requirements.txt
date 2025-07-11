@@ -1,2 +1,4 @@
-source env/bin/activate
-pip freeze > requirements.txt
+Django>=4.2
+gunicorn
+xlwt
+Pillow

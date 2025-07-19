@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/shannu5555/ipl-auction.git'
+                git 'https://github.com/shannu5555/IPL-Auction.git'
             }
         }
 

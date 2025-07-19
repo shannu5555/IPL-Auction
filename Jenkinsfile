@@ -35,5 +35,10 @@ EOF
                 }
             }
         }
+        stage("echo output"){
+            steps{
+                echo "output"
+            }
+        }        
     }
 }

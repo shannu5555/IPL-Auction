@@ -22,7 +22,7 @@ pipeline {
 
         stage('Run Migrations') {
             steps {
-                sh 'docker-compose exec web python manage.py migrate'
+                sh 'docker-compose run web python manage.py migrate'
             }
         }
 

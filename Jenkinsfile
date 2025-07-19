@@ -42,10 +42,19 @@ pipeline {
 
         stage('Cleanup Old Containers') {
             steps {
-                sh '''
-                    docker stop ipl-auction || true
-                    docker rm ipl-auction || true
-                '''
+                script {
+                    def oldContainers = sh(
+                        script: "docker ps -qf ancestor=$IMAGE_NAME:$TAG",
+                        returnStdout: true
+                    ).trim().split('\n')
+
+                    for (cid in oldContainers) {
+                        if (cid?.trim()) {
+                            sh "docker stop $cid || true"
+                            sh "docker rm $cid || true"
+                        }
+                    }
+                }
             }
         }
 

@@ -5,6 +5,7 @@ pipeline {
         DOCKERHUB_CREDENTIALS = '3bbfe990-08d3-43b5-85d4-172db056b333'
         IMAGE_NAME = 'shannu255/ipl-auction'
         TAG = 'latest'
+        CONTAINER_NAME = 'ipl-auction'
     }
 
     stages {
@@ -40,27 +41,18 @@ pipeline {
             }
         }
 
-        stage('Cleanup Old Containers') {
+        stage('Cleanup Old Container') {
             steps {
-                script {
-                    def oldContainers = sh(
-                        script: "docker ps -qf ancestor=$IMAGE_NAME:$TAG",
-                        returnStdout: true
-                    ).trim().split('\n')
-
-                    for (cid in oldContainers) {
-                        if (cid?.trim()) {
-                            sh "docker stop $cid || true"
-                            sh "docker rm $cid || true"
-                        }
-                    }
-                }
+                sh '''
+                    docker stop $CONTAINER_NAME || true
+                    docker rm $CONTAINER_NAME || true
+                '''
             }
         }
 
         stage('Run Container') {
             steps {
-                sh 'docker run -d -p 8000:8000 --name ipl-auction $IMAGE_NAME:$TAG'
+                sh 'docker run -d -p 8000:8000 --name $CONTAINER_NAME $IMAGE_NAME:$TAG'
             }
         }
 
@@ -73,11 +65,12 @@ pipeline {
 
     post {
         success {
-            slackSend(channel: '#ci', message: "✅ Build and Deployment Success!")
+            echo "✅ Build and Deployment Success!"
         }
         failure {
-            slackSend(channel: '#ci', message: "❌ Build or Deployment Failed!")
+            echo "❌ Build or Deployment Failed!"
         }
     }
 }
+
 

@@ -2,62 +2,77 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = 'shannu255/ipl-auction:latest'
+        DOCKERHUB_CREDENTIALS = '3bbfe990-08d3-43b5-85d4-172db056b333'
+        IMAGE_NAME = 'shannu255/ipl-auction'
+        TAG = 'latest'
+        CONTAINER_NAME = 'ipl-auction'
     }
 
     stages {
-
-        stage('Checkout') {
+        stage('Clone') {
             steps {
-                checkout([$class: 'GitSCM',
-                    branches: [[name: '*/main']],
-                    userRemoteConfigs: [[
-                        url: 'https://github.com/shannu255/IPL-Auction.git',
-                        credentialsId: '3bbfe990-08d3-43b5-85d4-172db056b333'  // Replace with your Jenkins credential ID
-                    ]]
-                ])
+                git branch: 'main', url: 'https://github.com/shannu5555/IPL-Auction.git'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    sh 'docker build -t $IMAGE_NAME .'
+                sh 'docker build -t $IMAGE_NAME:$TAG .'
+            }
+        }
+
+        stage('Login to Docker Hub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: "${DOCKERHUB_CREDENTIALS}", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh 'echo $PASSWORD | docker login -u $USERNAME --password-stdin'
                 }
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                sh 'docker push $IMAGE_NAME:$TAG'
+            }
+        }
+
+        stage('Run Migrations') {
+            steps {
+                sh 'docker run --rm $IMAGE_NAME:$TAG sh -c "python manage.py migrate"'
             }
         }
 
         stage('Cleanup Old Container') {
             steps {
                 sh '''
-                    CONTAINER_ID=$(docker ps -q --filter "publish=8000")
-                    if [ ! -z "$CONTAINER_ID" ]; then
-                        echo "Stopping existing container using port 8000: $CONTAINER_ID"
-                        docker stop $CONTAINER_ID
-                        docker rm $CONTAINER_ID
-                    else
-                        echo "No running container found using port 8000"
-                    fi
+                    docker stop 73198570e39c  || true
+                    docker rm 73198570e39c  || true
                 '''
             }
         }
 
         stage('Run Container') {
             steps {
-                sh 'docker run -d -p 8000:8000 --name ipl-auction $IMAGE_NAME'
+                sh 'docker run -d -p 8000:8000 --name $CONTAINER_NAME $IMAGE_NAME:$TAG'
+            }
+        }
+
+        stage('Check Status') {
+            steps {
+                sh 'docker ps'
             }
         }
     }
 
     post {
         success {
-            slackSend(channel: '#ci', message: "✅ Build Success for *${env.JOB_NAME}* (#${env.BUILD_NUMBER})")
+            echo "✅ Build and Deployment Success!"
         }
         failure {
-            slackSend(channel: '#ci', message: "❌ Build Failed for *${env.JOB_NAME}* (#${env.BUILD_NUMBER})")
+            echo "❌ Build or Deployment Failed!"
         }
     }
 }
+
 
 
 

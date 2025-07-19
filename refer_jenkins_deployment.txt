@@ -1,0 +1,6 @@
+sudo docker ps
+
+sudo docker exec -it ipl-web-1 python manage.py migrate
+
+sudo docker exec -it ipl-web-1 python manage.py createsuperuser
+

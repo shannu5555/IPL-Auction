@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        // Optional: set this as a parameter in Jenkins job config or via env vars
+        // You can also inject these from Jenkins Credentials for better security
         FIRST_RUN = "true"
         DJANGO_SUPERUSER_USERNAME = "admin"
         DJANGO_SUPERUSER_EMAIL = "admin@example.com"
@@ -12,6 +12,7 @@ pipeline {
     stages {
         stage('Build and Run Docker') {
             steps {
+                echo '📦 Building and starting Docker container...'
                 sh 'docker-compose up -d --build'
             }
         }
@@ -19,32 +20,38 @@ pipeline {
         stage('Apply Migrations') {
             steps {
                 script {
+                    echo '🔄 Applying Django migrations...'
                     env.CONTAINER_ID = sh(script: "docker ps -qf 'ancestor=ipl-web'", returnStdout: true).trim()
                     sh "docker exec -i ${env.CONTAINER_ID} python manage.py migrate"
                 }
             }
         }
-
-        stage('Create Superuser (first-time only)') {
+        
+        stage('Create Superuser') {
             when {
-                expression { return env.FIRST_RUN == 'true' }
+                expression { return env.FIRST_RUN == 'true' } // Only run on first build
             }
             steps {
-                sh """
-                    docker exec -i ${env.CONTAINER_ID} python manage.py shell << EOF
-from django.contrib.auth import get_user_model
-User = get_user_model()
-if not User.objects.filter(username='${DJANGO_SUPERUSER_USERNAME}').exists():
-    User.objects.create_superuser('${DJANGO_SUPERUSER_USERNAME}', '${DJANGO_SUPERUSER_EMAIL}', '${DJANGO_SUPERUSER_PASSWORD}')
-EOF
-                """
+                script {
+                    echo '👤 Creating Django superuser (if not exists)...'
+                    def container_id = sh(script: "docker ps -qf 'ancestor=ipl-web'", returnStdout: true).trim()
+
+                    sh """
+                        docker exec -e DJANGO_SUPERUSER_USERNAME=${env.DJANGO_SUPERUSER_USERNAME} \\
+                                     -e DJANGO_SUPERUSER_EMAIL=${env.DJANGO_SUPERUSER_EMAIL} \\
+                                     -e DJANGO_SUPERUSER_PASSWORD=${env.DJANGO_SUPERUSER_PASSWORD} \\
+                                     ${container_id} sh -c 'python manage.py shell < create_superuser.py'
+                    """
+                }
             }
         }
 
-        stage("Echo Container ID") {
+        stage('Done') {
             steps {
-                echo "Container ID: ${env.CONTAINER_ID}"
+                echo "✅ Pipeline completed successfully."
+                echo "ℹ️  Container ID used: ${env.CONTAINER_ID}"
             }
-        }        
+        }
     }
 }
+

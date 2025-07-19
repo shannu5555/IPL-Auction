@@ -37,7 +37,7 @@ EOF
         }
         stage("echo output"){
             steps{
-                echo "output"
+                echo "output ${container_id} "
             }
         }        
     }

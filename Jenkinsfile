@@ -41,14 +41,6 @@ pipeline {
             }
         }
 
-        stage('Cleanup Old Container') {
-            steps {
-                sh '''
-                    docker stop 73198570e39c  || true
-                    docker rm 73198570e39c  || true
-                '''
-            }
-        }
 
         stage('Run Container') {
             steps {

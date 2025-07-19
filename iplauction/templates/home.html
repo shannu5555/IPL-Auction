@@ -1,4 +1,3 @@
-<!-- auction/templates/home.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,11 +14,13 @@
 
     <style>
         body{
-          
+        /*    background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/73f385ae-e909-46b9-9faf-57dc2b09b346/dddraqt-f69a79cb-7e12-4a0c-b581-2dba06365070.png/v1/fill/w_1280,h_720,q_80,strp/black_material_ui_background_by_ministerkraft_dddraqt-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6IlwvZlwvNzNmMzg1YWUtZTkwOS00NmI5LTlmYWYtNTdkYzJiMDliMzQ2XC9kZGRyYXF0LWY2OWE3OWNiLTdlMTItNGEwYy1iNTgxLTJkYmEwNjM2NTA3MC5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.UtzmPfYs0s4-l9mf1__EQeo_Pg2fsrHUJZZoqPzIU3M');
+        */    
         background-size: cover;
             height: 100vh;
             width: 100%;
             background-color: #101820;
+            
         }
 .navbar {
     background-color: #333; 
@@ -137,10 +138,12 @@ grid-template-rows: repeat(2, 1fr);
 grid-column-gap: 30px;
 grid-row-gap: 37px;
 } */
-.parent {
-    margin: 10px;
+/*.parent {
+    margin: 70px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+
     grid-gap: 20px;
 }
 
@@ -149,12 +152,20 @@ grid-row-gap: 37px;
     background-color: #FEE715;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+    border: 2px solid #FEE715; 
 }
 
-.card .image {
-    flex: 1;
+
+.card img {
+    width: 150px;              
+    height: 150px;             
+    object-fit: cover;         
+    border-radius: 50%;        
     margin: 30px;
+    border: 2px solid #FEE715;
+    display: block;
 }
+
 
 .card .description {
     flex: 1;
@@ -164,7 +175,75 @@ grid-row-gap: 37px;
 .card img {
     max-width: 100%;
     height: auto;
+}*/
+.up-p{
+    display: flex;
+    
+    
 }
+.parent {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* 4 items per row */
+    grid-gap: 20px;
+    overflow: hidden;
+}
+
+.card {
+    display: flex;
+    flex-direction: row; /* horizontal layout inside card */
+    background-color: rgba(0, 0, 0, 0.5);
+   
+    color: black;
+    border-radius: 10px;
+    border: 2px solid #FEE715;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100px !important;
+    height: 100px !important;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 30px;
+    border: 2px solid #FEE715;
+    display: block;
+}
+/*.tiny-img .image img {
+    width: 40px !important;
+    height: 40px !important;
+    align-items: center;
+    text-align: center;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 10px;
+    border: 2px solid blue !important;
+    display: block;
+}*/
+.tiny-img {
+    display: flex;
+    align-items: center;       /* Vertically center */
+    gap: 0px;
+    padding-left: 40px;                 /* Optional spacing between image and text */
+}
+
+.tiny-img .image img {
+    width: 40px !important;
+    height: 40px !important;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0;                 /* Remove extra margin */
+    
+    display: block;
+}
+
+
+.card .description {
+    flex: 1;
+    margin: 15px;
+    overflow: hidden;
+}
+
 .card .description p{
     color: white;
     margin-bottom: 0px;
@@ -175,8 +254,44 @@ grid-row-gap: 37px;
 .card .description h3{
     font-weight: bold;
     color: white;
+    padding-top: 5px;
+    font-size: 20PX;
 }
 .card .description p span{
+    color: yellow;
+    font-weight:700;
+    font-size: 15px;
+}
+.card .description h4{
+    font-weight: bold;
+    color: white;
+    padding-top: 5px;
+    font-size: 20PX;
+    text-align: center;
+    align-items: center;
+}
+
+.card .description2 {
+    flex: 1;
+    margin: 15px;
+    overflow: hidden;
+}
+
+.card .description2 p{
+    color: white;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    font-size: 14px;
+    font-weight:500;
+}
+.card .description2 h4{
+    font-weight: bold;
+    color: rgb(245, 238, 238);
+    font-size: 20PX;
+    text-align: center;
+}
+
+.card .description2 p span{
     color: yellow;
     font-weight:700;
     font-size: 15px;
@@ -382,13 +497,14 @@ footer {
 <main class="p-3 m-0 border-0 bd-example m-0 border-0">
     <div id="carouselExampleSlidesOnly" style="background-color: #101820;" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <h5 >Daily Newssssss</h5>
+            <h5 >Daily Newz</h5>
+            {% load static %}
             {% for post in posts %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
                 {%if post.image %}
                 <img src="{{ post.image.url }}" class="d-block mx-auto img-fluid carousel-image" alt="{{ post.title }}">
                 {%else%}
-                no Logo
+                <img src="{% static 'images/linux.png' %}" class="d-block mx-auto img-fluid carousel-image"  alt="Default Image">
                 {%endif%}
                 <div class="carousel-caption d-none d-md-block">
                     <h4>{{ post.title }}</h4>
@@ -405,8 +521,12 @@ footer {
 <!----------------------------------------------------------------------------------------------------------------->
 <!----------------------------------------------------------------------------------------------------------------->
 
+{% load static %}
+
+
+<div class="up-p">
 <div class="parent">
-    <div class="card d-flex flex-row">
+    <div class="card ">
         {%for player in top_run_scorer%}
         <div class="image">
             {% if player.picture %}
@@ -428,7 +548,7 @@ footer {
         {%endfor%}
     </div>
 
-    <div class="card d-flex flex-row">
+    <div class="card ">
         {% for bid in top_sold_player %}
         <div class="image">
             {% if bid.player.picture %}
@@ -497,6 +617,42 @@ footer {
     
     <!-- Other card elements -->
     
+</div>
+<div class="parent">
+    
+        {% for team in teams %}
+            {% if team.name %}
+            <div class="card tiny-img" >
+                <div class="image">
+                    {% if team.picture %}
+                                <img src="{{ team.picture.url }}" alt="{{ team.name }} Logo" style="max-width: 150px; max-height: 150px;">
+                                    
+                                {% else %}
+                                    No Logo
+                                {% endif %}
+                </div>
+                <div class="description2">
+                    <h4 >"{{ team.name }}"</h4>
+                    
+                </div>
+                
+           </div>
+            {% else %}
+            No Logo
+            {% endif %}
+        {% endfor %}
+    
+    
+    
+    <div class="card description2">
+        <h1>add 2</h1>
+    </div>
+    <div class="card" >
+        <h1 >add 3</h1>
+    </div>
+    
+    
+</div>
 </div>
 <!----------------------------------------------------------------------------------------------------------------->
 <!-------------------------------------------------------------------------------------------------------
@@ -760,3 +916,4 @@ jQuery(document).ready(function($) {
 
 </body>
 </html>
+

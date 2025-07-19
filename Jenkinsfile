@@ -20,6 +20,12 @@ pipeline {
             }
         }
 
+        stage('Run Migrations') {
+            steps {
+                sh 'docker-compose exec web python manage.py migrate'
+            }
+        }
+
         stage('Check Status') {
             steps {
                 sh 'docker ps'
@@ -27,3 +33,4 @@ pipeline {
         }
     }
 }
+

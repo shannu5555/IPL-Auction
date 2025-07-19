@@ -12,7 +12,7 @@ pipeline {
                 checkout([$class: 'GitSCM',
                     branches: [[name: '*/main']],
                     userRemoteConfigs: [[
-                        url: 'https://github.com/shannu255/ipl-auction.git',
+                        url: 'https://github.com/shannu255/IPL-Auction.git',
                         credentialsId: '3bbfe990-08d3-43b5-85d4-172db056b333'  // Replace with your Jenkins credential ID
                     ]]
                 ])
